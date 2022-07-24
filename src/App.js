@@ -1,4 +1,6 @@
 import Navbar from "./components/Navbar/Navbar";
+import Sidebar from "./components/Sidebar/Sidebar";
+import BoardBody from "./components/BoardBody/BoardBody";
 
 function App() {
   return (
@@ -6,6 +8,11 @@ function App() {
       <header className="App-header">
         <Navbar />
       </header>
+      <main className="main-body">
+      <Sidebar />
+      <BoardBody />
+      </main>
+
     </div>
   );
 }

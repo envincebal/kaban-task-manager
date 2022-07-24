@@ -1,2 +1,35 @@
 @import "../../styles/variables.scss";
 
+.sidebar{
+  min-width: 300px;
+  background-color: $dark-mode-modal-background;
+  height: 100vh;
+  padding: 30px 0;
+  .sidebar-boards-counter{
+    letter-spacing: 2.4px;
+    color: $subheader-text;
+    font-size: 12px;
+    margin-left: 30px;
+  }
+
+  .create-board-btn{
+    color: $dark-mode-dark-blue;
+    background-color:  $dark-mode-modal-background;
+    height: 48px;
+    width: 276px;
+    border-radius: 0 24px 24px 0;
+    transition: all 0.3s ease;
+    display: flex; 
+    align-content: center;
+    padding-left: 5px;
+
+    svg path:hover{
+      fill: #828FA3;
+    }
+  }
+
+  .create-board-btn:hover{
+    background-color: $dark-mode-dark-blue;
+    color: $light-mode-sidebar-task-background;
+  }
+}
