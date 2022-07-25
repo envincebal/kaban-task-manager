@@ -5,14 +5,11 @@ import BoardBody from "./components/BoardBody/BoardBody";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Navbar />
-      </header>
-      <main className="main-body">
-      <Sidebar />
-      <BoardBody />
+      <Navbar/>
+      <main>
+        <Sidebar/>
+        <BoardBody/>
       </main>
-
     </div>
   );
 }

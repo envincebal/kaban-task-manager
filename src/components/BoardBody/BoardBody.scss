@@ -1,7 +1,19 @@
 @import "../../styles/variables.scss";
 
 .board-body{
-  background-color: $dark-mode-body-background;
+  background-color: $very-dark-grey;
   width: 100%;
-  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .empty-board-div{
+    text-align: center;
+    
+    h3{
+      color: $light-grey;
+      margin-bottom: 25px;
+      
+    }
+  }
 }

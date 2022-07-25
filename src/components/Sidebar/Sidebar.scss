@@ -1,35 +1,44 @@
 @import "../../styles/variables.scss";
 
-.sidebar{
+.sidebar {
   min-width: 300px;
-  background-color: $dark-mode-modal-background;
-  height: 100vh;
+  background-color: $dark-grey;
+
   padding: 30px 0;
-  .sidebar-boards-counter{
+  .sidebar-boards-counter {
     letter-spacing: 2.4px;
-    color: $subheader-text;
+    color: $light-grey;
     font-size: 12px;
     margin-left: 30px;
   }
 
-  .create-board-btn{
-    color: $dark-mode-dark-blue;
-    background-color:  $dark-mode-modal-background;
+  .sidebar-board-list {
+    margin-top: 15px;
+  }
+
+  .create-board-btn {
+    color: $dark-blue;
+    background-color: $dark-grey;
     height: 48px;
     width: 276px;
     border-radius: 0 24px 24px 0;
     transition: all 0.3s ease;
-    display: flex; 
-    align-content: center;
-    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    font-size: 14px;
 
-    svg path:hover{
-      fill: #828FA3;
+    svg {
+      margin-right: 10px;
+    }
+
+    svg path:hover {
+      fill: $light-grey;
     }
   }
 
-  .create-board-btn:hover{
-    background-color: $dark-mode-dark-blue;
-    color: $light-mode-sidebar-task-background;
+  .create-board-btn:hover {
+    background-color: $dark-blue;
+    color: $white;
   }
 }

@@ -3,8 +3,8 @@
 .navbar {
   height: 80px;
   width: 100%;
-  background-color: $dark-mode-modal-background;
-  border-bottom: 1px solid $dark-mode-border;
+  background-color: $dark-grey;
+  border-bottom: 1px solid $grey;
   display: flex;
 
   .logo-div {
@@ -12,7 +12,7 @@
     align-items: center;
     min-width: 300px;
     height: 100%;
-    border-right: 1px solid $dark-mode-border;
+    border-right: 1px solid $grey;
     padding: 0 30px;
     img {
       width: 152px;
@@ -24,14 +24,15 @@
     padding: 0 30px;
     width: 100%;
     justify-content: space-between;
-    color: $light-mode-sidebar-task-background;
+    color: $white;
     .add-task-div{
       display: flex;
       align-items: center;
 
       .menu-btn{
-        margin-left: 35px;
+        margin-left: 15px;
         cursor: pointer;
+        padding: 20px;
       }
     }
   }
