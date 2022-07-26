@@ -1,0 +1,20 @@
+@import "../../styles/variables.scss";
+
+.board-column {
+  width: 280px;
+
+  h3 {
+    color: $light-grey;
+    font-size: 13px;
+    letter-spacing: 5px;
+    .board-color {
+
+      width: 12px;
+      height: 12px;
+      margin-right: 10px;
+      display: inline-block;
+      border-radius: 100%;
+      background-color: #49c4e5;
+    }
+  }
+}

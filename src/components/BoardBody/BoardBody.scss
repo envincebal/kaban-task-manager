@@ -1,19 +1,21 @@
 @import "../../styles/variables.scss";
 
-.board-body{
+.board-body {
   background-color: $very-dark-grey;
   width: 100%;
+  padding: 15px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .empty-board-div{
-    text-align: center;
-    
-    h3{
-      color: $light-grey;
-      margin-bottom: 25px;
-      
+  .empty-board-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    .empty-content {
+      text-align: center;
+      h3 {
+        color: $light-grey;
+        margin-bottom: 25px;
+      }
     }
   }
 }

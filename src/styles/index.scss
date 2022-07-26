@@ -1,21 +1,19 @@
-
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   font-family: "Plus Jakarta Sans", sans-serif;
- 
 }
 
-.App{
+.App {
   display: flex;
-flex-direction: column;
-height: 100vh;
+  flex-direction: column;
+  height: 100vh;
 }
-main{
+main {
   display: flex;
   flex: 1;
 }
