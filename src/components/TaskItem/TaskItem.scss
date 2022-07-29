@@ -1,0 +1,21 @@
+@import "../../styles/variables.scss";
+
+.board-item{
+  list-style: none;
+  font-size: 13px;
+  border-radius: 10px;
+  padding: 25px 20px;
+  margin-bottom: 20px;
+  background-color: $dark-grey;
+  color: $white;
+  width: 100%;
+  cursor: grab;
+  .item-title{
+    margin-bottom: 10px;
+  }
+
+  .subtask-count{
+    color: $light-grey;
+    font-weight: 700;
+  }
+}
