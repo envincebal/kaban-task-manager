@@ -12,7 +12,7 @@ const TaskColumn = () => {
         <TaskItem/>
         <TaskItem/>
         <TaskItem/>
-        <TaskItem/>
+        <TaskItem/> 
         <TaskItem/>
         <TaskItem/>
         <TaskItem/>

@@ -21,8 +21,11 @@ button{
 }
 
 .add-edit-button{
-  width: 200px;
-  height: 40px;
+  width: 100%;
+font-size: 14px;
+
+color: $dark-blue;
+padding: 10px;
   border-radius: 20px;
 }
 

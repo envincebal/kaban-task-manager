@@ -8,10 +8,7 @@ const BoardBody = () => {
     <div className="board-body">
       <TaskColumn /> 
       <TaskColumn /> 
-      <TaskColumn /> 
-      <TaskColumn /> 
-      <TaskColumn /> 
-      <TaskColumn /> 
+
       <div className="new-board-column">
         <h2>+ New Column</h2>
       </div>
