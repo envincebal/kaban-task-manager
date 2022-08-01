@@ -1,6 +1,6 @@
 @import "../../styles/variables.scss";
 
-.new-board-modal {
+.new-column-modal{
   color: $white;
   border-radius: 10px;
   padding: 30px;
@@ -12,12 +12,12 @@
   width: 480px;
   height: auto;
   background-color: $dark-grey;
-  
+
   label,
   input {
     background-color: $dark-grey;
     display: block;
-    padding: 10px;
+
     border-radius: 5px;
   }
 
@@ -29,6 +29,7 @@
 
   input{
     background-color: transparent;
+    padding: 10px;
     border: 0px solid;
     color: $white;
     border: 1px solid $grey;
@@ -38,36 +39,14 @@
     outline: none;
   }
 
-  .modal-title{
+  .column-title{
     margin-bottom: 20px;
   }
 
-  .board-name-div{
+  .new-column-div{
     margin-bottom: 20px;
     input{
       width: 100%;
-    }
-  }
-
-  .board-columns-div{
-    margin-bottom: 15px;
-
-    .columns-item-div{
-      display: flex;
-      align-items: center;
-
-      .column-input{
-        margin-right: 12px;
-        flex-grow: 1;
-      }
-
-      svg{
-        cursor: pointer;
-      }
-
-      svg g:hover {
-        fill: $red;
-      }
     }
   }
 }

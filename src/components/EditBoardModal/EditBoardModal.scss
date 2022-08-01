@@ -1,6 +1,7 @@
 @import "../../styles/variables.scss";
 
-.new-board-modal {
+
+.edit-board-modal {
   color: $white;
   border-radius: 10px;
   padding: 30px;
@@ -12,55 +13,59 @@
   width: 480px;
   height: auto;
   background-color: $dark-grey;
-  
+
   label,
-  input {
-    background-color: $dark-grey;
-    display: block;
-    padding: 10px;
-    border-radius: 5px;
+  input,
+  textarea,select, option{
+    background-color: $dark-grey !important;
+    display: block !important;
+    font-family: inherit !important;
   }
 
-  label{
+  input,
+  textarea, select, option{
+    background-color: transparent;
+    border: 0px solid;
+    color: $white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid $grey;
+  }
+
+  label {
     font-size: 14px;
     margin-bottom: 5px;
     font-weight: 700;
   }
 
-  input{
-    background-color: transparent;
-    border: 0px solid;
-    color: $white;
-    border: 1px solid $grey;
-  }
+  textarea { resize: none; }
 
-  input:focus{
+  input:focus,
+  textarea:focus, select:focus {
     outline: none;
   }
 
-  .modal-title{
+  .edit-modal-title,
+  .edit-board-name-div,
+  .edit-board-columns-div {
     margin-bottom: 20px;
   }
 
-  .board-name-div{
-    margin-bottom: 20px;
-    input{
+  .edit-board-name-div{
+    .edit-task-title{
       width: 100%;
     }
   }
 
-  .board-columns-div{
-    margin-bottom: 15px;
-
-    .columns-item-div{
+  .edit-board-columns-div{
+    .edit-columns-item-div {
       display: flex;
       align-items: center;
 
-      .column-input{
-        margin-right: 12px;
+      .edit-column-input {
         flex-grow: 1;
+        margin-right: 12px;
       }
-
       svg{
         cursor: pointer;
       }
@@ -70,4 +75,5 @@
       }
     }
   }
+ 
 }
