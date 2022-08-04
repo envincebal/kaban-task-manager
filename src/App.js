@@ -1,23 +1,35 @@
 import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {
+hideModal
+} from "./reducers/modal/modalSlice";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import BoardBody from "./components/BoardBody/BoardBody";
 import NewBoardModal from "./components/NewBoardModal/NewBoardModal";
 import NewTaskModal from "./components/NewTaskModal/NewTaskModal";
 import NewColumnModal from "./components/NewColumnModal/NewColumnModal";
-import EditTaskModal from "./components/EditTaskModal/EditTaskModal";
+import EditTaskModal from "./components/EditTaskModal/EditTaskModal"; 
 import EditBoardModal from "./components/EditBoardModal/EditBoardModal";
-import {useState} from "react";
+
 
 function App() {
-  const [overlay,
-    setOverlay] = useState(true);
+
+  let {newBoardModal, newTaskModal, newColumnModal, editTaskModal, editBoardModal} = useSelector(store => store.modal);
+  const dispatch = useDispatch();
+
   return (
     <div className="App">
-      {overlay && (
+      {(newBoardModal || newTaskModal || newColumnModal || editTaskModal || editBoardModal) && (
         <div>
-          <div onClick={() => setOverlay(false)} className="modal-overlay"></div>
-          <EditBoardModal />
+          <div onClick={() => dispatch(hideModal())} className="modal-overlay">
+
+          </div>
+                      {newBoardModal && <NewBoardModal/>}
+            {newTaskModal && <NewTaskModal/>}
+            {newColumnModal && <NewColumnModal/>}
+            {editTaskModal && <EditTaskModal/>}
+            {editBoardModal && <EditBoardModal/>}
         </div>
       )
 }

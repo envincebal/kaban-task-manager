@@ -1,15 +1,18 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
+import { newColumn } from "../../reducers/modal/modalSlice";
 import Button from "../Button/Button";
 import TaskColumn from "../TaskColumn/TaskColumn";
 import "./BoardBody.scss";
 
 const BoardBody = () => {
+  const dispatch = useDispatch();
   return (
     <div className="board-body">
       <TaskColumn /> 
       <TaskColumn /> 
 
-      <div className="new-board-column">
+      <div onClick={() => dispatch(newColumn())} className="new-board-column">
         <h2>+ New Column</h2>
       </div>
       {/* <div className="empty-board-div">

@@ -2,9 +2,12 @@ import React from 'react';
 import darkLogo from "../../assets/logo-light.svg";
 import mobile from "../../assets/icon-vertical-ellipsis.svg";
 import Button from "../Button/Button";
+import { useDispatch } from "react-redux";
+import { newTask } from "../../reducers/modal/modalSlice";
 import "./Navbar.scss";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   return (
     <nav className="navbar">
       <div className="logo-div">
@@ -13,8 +16,8 @@ const Navbar = () => {
       <div className="main-navbar">
         <h2>Platform Launch</h2>
         <div className="add-task-div">
-          <Button className={"add-task"} text={"+ Add New Task"}/>
-          <img className="menu-btn" src={mobile} alt="menu"/>
+          <Button onClick={() => dispatch(newTask())} className={"add-task"} text={"+ Add New Task"}/>
+          <img  className="menu-btn" src={mobile} alt="menu"/>
         </div>
       </div>
 
