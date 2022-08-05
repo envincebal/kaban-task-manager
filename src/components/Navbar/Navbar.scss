@@ -25,14 +25,38 @@
     width: 100%;
     justify-content: space-between;
     color: $white;
-    .add-task-div{
+    position: relative;
+    .add-task-div {
       display: flex;
       align-items: center;
 
-      .menu-btn{
+      .menu-btn {
         margin-left: 15px;
         cursor: pointer;
         padding: 20px;
+      }
+    }
+    .menu-div {
+      position: absolute;
+      top: 70px;
+      right: 50px;
+      border-radius: 10px;
+      background-color: $very-dark-grey;
+      padding: 20px;
+      border: 1px solid $grey;
+      width: 192px;
+      button {
+        background-color: $very-dark-grey;
+        display: block;
+        font-weight: 400;
+      }
+
+      .edit-board-btn {
+        color: $light-grey;
+        margin-bottom: 20px;
+      }
+      .delete-board-btn {
+      color: $red;
       }
     }
   }
