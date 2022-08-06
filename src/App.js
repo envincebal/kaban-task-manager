@@ -11,7 +11,7 @@ import EditTaskModal from "./components/EditTaskModal/EditTaskModal";
 import EditBoardModal from "./components/EditBoardModal/EditBoardModal";
 import DeleteBoardModal from "./components/DeleteBoardModal/DeleteBoardModal";
 import DeleteTaskModal from "./components/DeleteTaskModal/DeleteTaskModal";
-
+import TaskItemModal from "./components/TaskItemModal/TaskItemModal";
 function App() {
 
   let {
@@ -21,13 +21,14 @@ function App() {
     editTaskModal,
     editBoardModal,
     deleteBoardModal,
-    deleteTaskModal
+    deleteTaskModal,
+    taskItemModal
   } = useSelector(store => store.modal);
   const dispatch = useDispatch();
 
   return (
     <div className="App">
-      {(newBoardModal || newTaskModal || newColumnModal || editTaskModal || editBoardModal || deleteBoardModal || deleteTaskModal) && (
+      {(newBoardModal || newTaskModal || newColumnModal || editTaskModal || editBoardModal || deleteBoardModal || deleteTaskModal || taskItemModal) && (
         <div>
           <div onClick={() => dispatch(hideModal())} className="modal-overlay"></div>
           {newBoardModal && <NewBoardModal/>}
@@ -37,6 +38,7 @@ function App() {
           {editBoardModal && <EditBoardModal/>}
           {deleteBoardModal && <DeleteBoardModal/>}
           {deleteTaskModal && <DeleteTaskModal/>}
+          {taskItemModal && <TaskItemModal/>}
         </div>
       )
 }
