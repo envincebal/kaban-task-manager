@@ -10,7 +10,9 @@ const modalSlice = createSlice({
     newTaskModal: false,
     deleteBoardModal: false,
     deleteTaskModal: false,
-    taskItemModal: false
+    taskItemModal: false,
+    taskMenuToggle: false,
+    navMenuToggle: false
   },
   reducers: {
     editBoard: (state) => {
@@ -37,6 +39,12 @@ const modalSlice = createSlice({
     taskItem: (state) => {
       state.taskItemModal = true;
     },
+    taskMenu: (state) => {
+      state.taskMenuToggle = !state.taskMenuToggle;
+    },
+    navMenu: (state) => {
+      state.navMenuToggle = !state.navMenuToggle;
+    },
     hideModal: (state) => {
       state.editBoardModal = false;
       state.editTaskModal = false;
@@ -59,7 +67,10 @@ export const {
   deleteBoard,
   deleteTask,
   hideModal,
-  taskItem
+  taskItem,
+  taskMenu,
+navMenu
+  
 } = modalSlice.actions;
 
 export default modalSlice.reducer;

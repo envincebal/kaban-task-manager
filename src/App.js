@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {hideModal} from "./reducers/modal/modalSlice";
+import {hideModal, navMenu,taskMenu} from "./reducers/modal/modalSlice";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import BoardBody from "./components/BoardBody/BoardBody";
@@ -22,15 +22,25 @@ function App() {
     editBoardModal,
     deleteBoardModal,
     deleteTaskModal,
-    taskItemModal
+    taskItemModal,
+    taskMenuToggle,
+navMenuToggle
   } = useSelector(store => store.modal);
   const dispatch = useDispatch();
 
   return (
-    <div className="App">
+    <div className="App" onClick={() => {
+      taskMenuToggle && dispatch(taskMenu());
+      navMenuToggle && dispatch(navMenu())
+    }}>
       {(newBoardModal || newTaskModal || newColumnModal || editTaskModal || editBoardModal || deleteBoardModal || deleteTaskModal || taskItemModal) && (
         <div>
-          <div onClick={() => dispatch(hideModal())} className="modal-overlay"></div>
+          <div
+            onClick={() => {
+            dispatch(hideModal())
+  
+          }}
+            className="modal-overlay"></div>
           {newBoardModal && <NewBoardModal/>}
           {newTaskModal && <NewTaskModal/>}
           {newColumnModal && <NewColumnModal/>}

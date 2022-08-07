@@ -35,17 +35,46 @@
     font-weight: 700;
   }
 
+  input:focus,
+   select:focus {
+    outline: none;
+  }
+
   .task-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     .task-item-title {
       padding-right: 20px;
+
     }
     .menu-btn {
-      width: 4px;
-      height: 15px;
+      width: 8px;
+      min-height: 15px;
       cursor: pointer;
+    }
+    .menu-div {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      border-radius: 10px;
+      background-color: $very-dark-grey;
+      padding: 20px;
+      border: 1px solid $grey;
+      width: 192px;
+      button {
+        background-color: $very-dark-grey;
+        display: block;
+        font-weight: 400;
+      }
+
+      .edit-board-btn {
+        color: $light-grey;
+        margin-bottom: 20px;
+      }
+      .delete-board-btn {
+      color: $red;
+      }
     }
   }
 
@@ -73,6 +102,7 @@
         margin-bottom: 12px;
         cursor: pointer;
         transition: all 0.3s ease;
+
         .checkbox {
           width: 16px;
           height: 16px;
