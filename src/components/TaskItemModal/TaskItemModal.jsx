@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import mobile from "../../assets/icon-vertical-ellipsis.svg";
 import check from "../../assets/icon-check.svg";
 import "./TaskItemModal.scss";
+
 const TaskItemModal = () => {
   const dispatch = useDispatch();
   const {taskMenuToggle} = useSelector(store => store.modal);

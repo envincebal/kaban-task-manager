@@ -53,7 +53,7 @@ const modalSlice = createSlice({
       state.newTaskModal = false;
       state.deleteBoardModal = false;
       state.deleteTaskModal = false;
-      state.taskItemModal =false;
+      state.taskItemModal = false;
     }
   }
 });
@@ -69,8 +69,8 @@ export const {
   hideModal,
   taskItem,
   taskMenu,
-navMenu
-  
+  navMenu
+
 } = modalSlice.actions;
 
 export default modalSlice.reducer;
