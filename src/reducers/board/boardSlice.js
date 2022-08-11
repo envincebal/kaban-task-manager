@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {v4 as uuid} from "uuid";
+
 const boardSlice = createSlice({
   name: "board",
   initialState:{
@@ -12,12 +13,13 @@ const boardSlice = createSlice({
       const newBoard = {
         id: uniqueID,
         name: payload.name,
-        columns:[]
+        columns:payload.columns
       }
+      state.boards.push(newBoard);
     }
   }
 });
 
-const {addBoard} = boardSlice.actions;
+export const {addBoard} = boardSlice.actions;
 
 export default boardSlice.reducer;

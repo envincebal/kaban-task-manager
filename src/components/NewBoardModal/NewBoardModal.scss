@@ -31,7 +31,7 @@
     background-color: transparent;
     border: 0px solid;
     color: $white;
-    border: 1px solid $grey;
+    border: 1px solid $light-grey;
   }
 
   input:focus{
@@ -55,7 +55,7 @@
     .columns-item-div{
       display: flex;
       align-items: center;
-
+      margin-bottom: 10px;
       .column-input{
         margin-right: 12px;
         flex-grow: 1;
