@@ -1,25 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
-import {v4 as uuid} from "uuid";
+import {createSlice} from "@reduxjs/toolkit";
 
 const boardSlice = createSlice({
   name: "board",
-  initialState:{
-    boards:[],
+  initialState: {
+    boards: [],
     activeBoard: null
   },
-  reducers:{
-    addBoard: (state, {payload}) =>{
-      const uniqueID = uuid();
+  reducers: {
+    setActiveBoard: (state, {payload}) => {
+      state.activeBoard = payload;
+    },
+    addBoard: (state, {payload}) => {
+    
       const newBoard = {
-        id: uniqueID,
+        id: payload.id,
         name: payload.name,
-        columns:payload.columns
+        columns: payload.columns
       }
       state.boards.push(newBoard);
+  state.activeBoard = payload.id;
     }
   }
 });
 
-export const {addBoard} = boardSlice.actions;
+export const {
+  addBoard,
+  setActiveBoard
+} = boardSlice.actions;
 
 export default boardSlice.reducer;

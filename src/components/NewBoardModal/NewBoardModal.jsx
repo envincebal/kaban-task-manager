@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {addBoard} from "../../reducers/board/boardSlice";
 import { hideModal } from "../../reducers/modal/modalSlice";
 import Button from "../Button/Button";
+import {v4 as uuid} from "uuid";
 import "./NewBoardModal.scss";
 
 const NewBoardModal = () => {
@@ -12,7 +13,7 @@ const NewBoardModal = () => {
     setBoardName] = useState("");
   const [columns,
     setColumns] = useState([{board: "Todo"}, {board: "Doing"}]);
-
+  const uniqueID = uuid();
   const nameChangeHandler = (e) => {
     setBoardName(e.target.value)
   }
@@ -63,6 +64,7 @@ const NewBoardModal = () => {
       <Button onClick={() =>{ 
         dispatch(
         addBoard({
+          id: uniqueID,
        name: boardName,
         columns
       }))

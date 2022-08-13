@@ -1,19 +1,23 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {newBoard} from "../../reducers/modal/modalSlice";
+import { setActiveBoard } from "../../reducers/board/boardSlice";
 import SideBarBoard from "../SideBarBoard/SideBarBoard";
 import "./Sidebar.scss"
 
 const Sidebar = () => {
-
   const {boards} = useSelector(store => store.board);
   const dispatch = useDispatch();
+
+  const getID = (e, key) => {
+    dispatch(setActiveBoard(key))
+  }
   return (
     <div className="sidebar">
       <h5 className="sidebar-boards-counter">{`ALL BOARDS (${ 5})`}</h5>
       <ul className="sidebar-board-list">
         {boards && (boards.map((item, i) => {
-          return <SideBarBoard name={item.name} key={i}/>
+          return <SideBarBoard onClick={(e) => getID(e, item.id)} name={item.name} id={item.id} key={item.id}/>
         }))
 }
       </ul>
