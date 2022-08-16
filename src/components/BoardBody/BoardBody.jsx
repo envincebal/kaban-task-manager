@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useState } from "react";
+import React from 'react';
+
 import {useDispatch, useSelector} from "react-redux";
 import {newColumn, newBoard} from "../../reducers/modal/modalSlice";
 import Button from "../Button/Button";
@@ -9,23 +9,16 @@ import "./BoardBody.scss";
 const BoardBody = () => {
   const dispatch = useDispatch();
 
-  const {boards, activeBoard} = useSelector(store => store.board);
-  const [currentBoard, setCurrentBoard] = useState(null);
-  useEffect(() => {
-    const getBoardByID = boards.find(el => el.id === activeBoard);
- 
-    setCurrentBoard(getBoardByID);
-     
-  },[activeBoard, currentBoard,boards]);
+  const {boards,activeBoard} = useSelector(store => store.board);
 
   return (
     <div className="board-body">
-    {console.log(currentBoard)}
+    {console.log(activeBoard)}
       {boards.length > 0
         ? (
           <div className="boards-div">
             {
-              currentBoard.columns.map((item, i) => {
+              activeBoard.columns.map((item, i) => {
                 return <TaskColumn name={item.board} key={i}/>
               })
             }

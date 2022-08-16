@@ -1,5 +1,5 @@
-import React from 'react';
-import {useState} from "react";
+import React ,{useState} from 'react';
+
 import {useDispatch} from "react-redux";
 import {addBoard} from "../../reducers/board/boardSlice";
 import { hideModal } from "../../reducers/modal/modalSlice";
@@ -14,6 +14,7 @@ const NewBoardModal = () => {
   const [columns,
     setColumns] = useState([{board: "Todo"}, {board: "Doing"}]);
   const uniqueID = uuid();
+  
   const nameChangeHandler = (e) => {
     setBoardName(e.target.value)
   }

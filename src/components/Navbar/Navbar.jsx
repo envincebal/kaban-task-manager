@@ -10,13 +10,14 @@ import "./Navbar.scss";
 const Navbar = () => {
   const dispatch = useDispatch();
   const {navMenuToggle} = useSelector(store => store.modal);
+  const {activeBoard} = useSelector(store => store.board);
   return (
     <nav className="navbar">
       <div className="logo-div">
         <img className="log-img" src={darkLogo} alt="logo"/>
       </div>
       <div className="main-navbar">
-        <h2>Platform Launch</h2>
+        <h2>{activeBoard && activeBoard.name}</h2>
         <div className="add-task-div">
           <Button
             onClick={() => dispatch(newTask())}

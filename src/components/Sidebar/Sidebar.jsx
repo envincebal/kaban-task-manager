@@ -9,15 +9,12 @@ const Sidebar = () => {
   const {boards} = useSelector(store => store.board);
   const dispatch = useDispatch();
 
-  const getID = (e, key) => {
-    dispatch(setActiveBoard(key))
-  }
   return (
     <div className="sidebar">
-      <h5 className="sidebar-boards-counter">{`ALL BOARDS (${ 5})`}</h5>
+      <h5 className="sidebar-boards-counter">{`ALL BOARDS (${ boards.length})`}</h5>
       <ul className="sidebar-board-list">
-        {boards && (boards.map((item, i) => {
-          return <SideBarBoard onClick={(e) => getID(e, item.id)} name={item.name} id={item.id} key={item.id}/>
+        {boards && (boards.map(item => {
+          return <SideBarBoard onClick={() =>   dispatch(setActiveBoard(item.id))} key={item.id}/>
         }))
 }
       </ul>
