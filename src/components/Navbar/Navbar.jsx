@@ -17,19 +17,22 @@ const Navbar = () => {
         <img className="log-img" src={darkLogo} alt="logo"/>
       </div>
       <div className="main-navbar">
-        <h2>{activeBoard && activeBoard.name}</h2>
-        <div className="add-task-div">
-          <Button
-            onClick={() => dispatch(newTask())}
-            className={"add-task"}
-            text={"+ Add New Task"}/>
-          <img
-            onClick={() => dispatch(navMenu())}
-            className="menu-btn"
-            src={mobile}
-            alt="menu"/>
-
-        </div>
+        {activeBoard && (
+        <>
+          <h2>{activeBoard.name}</h2>
+          <div className="add-task-div">
+            <Button
+              onClick={() => dispatch(newTask())}
+              className={"add-task"}
+              text={"+ Add New Task"}/>
+            <img
+              onClick={() => dispatch(navMenu())}
+              className="menu-btn"
+              src={mobile}
+              alt="menu"/>
+          </div>
+        </>
+        )}
         {navMenuToggle && (
           <div className="menu-div">
             <button onClick={() => dispatch(editBoard())} className="edit-board-btn">Edit Board</button>

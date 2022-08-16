@@ -14,7 +14,7 @@ const Sidebar = () => {
       <h5 className="sidebar-boards-counter">{`ALL BOARDS (${ boards.length})`}</h5>
       <ul className="sidebar-board-list">
         {boards && (boards.map(item => {
-          return <SideBarBoard onClick={() =>   dispatch(setActiveBoard(item.id))} key={item.id}/>
+          return <SideBarBoard onClick={() =>   dispatch(setActiveBoard(item.id))} id={item.id} name={item.name} key={item.id}/>
         }))
 }
       </ul>

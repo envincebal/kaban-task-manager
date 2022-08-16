@@ -29,6 +29,10 @@ const EditBoardModal = () => {
     ));
   }
 
+  const addColumn = () => {
+    setColumns([...columns, {board: ""}])
+  }
+
   const deleteColumn = (i) => {
     let filteredColumns = [...columns];
     filteredColumns.splice(i, 1);
@@ -67,13 +71,13 @@ const EditBoardModal = () => {
       </div>
 
       <Button
-        onClick={() => dispatch(hideModal())}
+        onClick={() => addColumn()}
         text={"+ Add New Column"}
         className={"add-column-subtask"}/>
       <Button
         onClick={() => {
           dispatch(hideModal())
-          dispatch(editBoard(columns));
+          dispatch(editBoard({boardName,columns}));
         }}
         text={"Save Changes"}
         className={"create-save-changes"}/>

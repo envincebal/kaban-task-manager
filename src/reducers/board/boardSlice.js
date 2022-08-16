@@ -23,7 +23,12 @@ const boardSlice = createSlice({
       state.boards.push(newBoard);
     },
     editBoard: (state, {payload}) => {
-      state.activeBoard.columns = payload;
+      const getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
+      
+      getBoardByID.name = payload.boardName;
+      getBoardByID.columns = payload.columns;
+
+      state.activeBoard = getBoardByID;
     },
     deleteCurrentBoard: (state, {payload}) => {
       const deletedBoard = state.boards.filter(item => item.id !== state.activeBoard.id);
@@ -33,7 +38,10 @@ const boardSlice = createSlice({
       state.activeBoard = state.boards[0];
     },
     addColumn: (state, {payload}) => {
-      state.activeBoard.columns.push(payload)
+      const getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
+      getBoardByID.columns.push(payload)
+
+      state.activeBoard = getBoardByID;
     }
 
   }
