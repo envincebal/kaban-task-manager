@@ -3,6 +3,7 @@ import Button from "../Button/Button";
 import { useDispatch } from "react-redux/es/exports";
 import {hideModal} from "../../reducers/modal/modalSlice";
 import { addColumn } from "../../reducers/board/boardSlice";
+import {v4 as uuid} from "uuid";
 import "./NewColumnModal.scss";
 
 const NewColumnModal = () => {
@@ -15,7 +16,6 @@ const NewColumnModal = () => {
   
   return (
   <div className="new-column-modal">
-    {console.log(newColumn)}
       <h3 className="column-title">Add New Column</h3>
       <div className="new-column-div">
       <label htmlFor="name">Name</label>
@@ -23,7 +23,7 @@ const NewColumnModal = () => {
       </div>
       <Button onClick={() =>{
         dispatch(hideModal());
-        dispatch(addColumn({board: newColumn}));
+        dispatch(addColumn({id:uuid(), board: newColumn, tasks: []}));
       }} text={"+ Add New Column"} className={"create-save-changes"}/>
     </div>
   )

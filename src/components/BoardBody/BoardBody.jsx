@@ -13,14 +13,16 @@ const BoardBody = () => {
 
   return (
     <div className="board-body">
-    {console.log(activeBoard)}
+
       {boards.length > 0
         ? (
           <div className="boards-div">
             {
-              activeBoard.columns.map((item, i) => {
-                return <TaskColumn name={item.board} key={i}/>
+              activeBoard.columns.map((item) => {
+                return <TaskColumn id={item.id} name={item.board} key={item.id}/>
               })
+            
+
             }
             <div onClick={() => dispatch(newColumn())} className="new-board-column">
               <h2>+ New Column</h2>

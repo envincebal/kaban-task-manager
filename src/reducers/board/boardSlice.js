@@ -1,15 +1,25 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice,current} from "@reduxjs/toolkit";
 
 const boardSlice = createSlice({
   name: "board",
   initialState: {
     boards: [],
-    activeBoard: null
+    activeBoard: null,
+    activeColumn: null,
+    activeTask: null
   },
   reducers: {
     setActiveBoard: (state, {payload}) => {
       const getBoardByID = state.boards.find(el => el.id === payload);
       state.activeBoard = getBoardByID;
+    },
+    setActiveTask: (state, {payload}) => {
+      const getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
+      const getColumnByID = getBoardByID.columns.find(el => el.id === payload.columnID);
+      const getTaskID = getColumnByID.tasks.find(el => el.id === payload.taskID);
+      state.activeColumn = getColumnByID;
+      state.activeTask = getTaskID;
+      console.log(current(getColumnByID))
     },
     addBoard: (state, {payload}) => {
       const newBoard = {
@@ -24,7 +34,7 @@ const boardSlice = createSlice({
     },
     editBoard: (state, {payload}) => {
       const getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
-      
+
       getBoardByID.name = payload.boardName;
       getBoardByID.columns = payload.columns;
 
@@ -42,8 +52,33 @@ const boardSlice = createSlice({
       getBoardByID.columns.push(payload)
 
       state.activeBoard = getBoardByID;
-    }
+    },
+    addTask: (state, {payload}) => {
+      const getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
 
+     const getColumnByID = getBoardByID.columns.find(el => el.id === payload.status);
+      const newTask = {
+        id: payload.id,
+        title: payload.title,
+        description: payload.description,
+        subTasks: payload.subTasks
+      }
+
+      getColumnByID.tasks.push(newTask);
+      state.activeBoard = getBoardByID;
+    },
+    moveTask: (state, {payload}) => {
+      let getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
+      let getColumnByID = getBoardByID.columns.find(el => el.id === payload);
+      let filteredTask =state.activeColumn.tasks.filter(el => el.id !== state.activeTask.id);
+   
+      console.log(current(getColumnByID));
+      
+    state.activeTask = filteredTask;
+    state.activeColumn.tasks = state.activeTask;
+    state.activeBoard.columns = state.activeColumn;
+    state.activeBoard = getBoardByID;
+    }
   }
 });
 
@@ -52,7 +87,10 @@ export const {
   setActiveBoard,
   deleteCurrentBoard,
   addColumn,
-  editBoard
+  editBoard,
+  addTask,
+  setActiveTask,
+  moveTask
 } = boardSlice.actions;
 
 export default boardSlice.reducer;

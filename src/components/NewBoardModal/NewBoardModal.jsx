@@ -8,13 +8,13 @@ import {v4 as uuid} from "uuid";
 import "./NewBoardModal.scss";
 
 const NewBoardModal = () => {
+  const uniqueID = uuid();
   const dispatch = useDispatch();
   const [boardName,
     setBoardName] = useState("");
   const [columns,
-    setColumns] = useState([{board: "Todo"}, {board: "Doing"}]);
-  const uniqueID = uuid();
-  
+    setColumns] = useState([{id: uuid(), board: "Todo", tasks: [] }, {id: uuid(), board: "Doing", tasks: [] }]);
+
   const nameChangeHandler = (e) => {
     setBoardName(e.target.value)
   }
@@ -26,7 +26,7 @@ const NewBoardModal = () => {
   }
 
   const addColumn = () => {
-    setColumns([...columns, {board: ""}])
+    setColumns([...columns, { id: uuid(),board: "",tasks: [] }])
   }
 
   const deleteColumn = (i) => {

@@ -14,13 +14,12 @@
   background-color: $dark-grey;
 
   label,
-  input, select, option, .status-option {
+  input, .status-option, .status {
     background-color: $dark-grey !important;
-    display: block !important;
     font-family: inherit !important;
   }
 
-  input, select, option, .status-option {
+  input, .status-option,.status  {
     background-color: transparent;
     border: 0px solid;
     color: $white;
@@ -128,9 +127,31 @@
 
   .current-status-div{
     margin-top: 20px;
+    position: relative;
     .status{
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       width: 100%;
       cursor: pointer;
+    }
+
+    .status-list{
+      background-color: $very-dark-grey;
+      position: absolute;
+      border-radius: 5px;
+      width: 100%;
+      li{
+        padding: 5px;
+        list-style: none;
+        cursor: pointer;
+        color: $light-grey;
+      }
+      li:hover{
+        background-color: $grey;
+        color: $dark-blue;
+      }
     }
   }
 }
