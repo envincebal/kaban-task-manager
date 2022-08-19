@@ -40,6 +40,16 @@ const boardSlice = createSlice({
 
       state.activeBoard = getBoardByID;
     },
+    editTask:(state, {payload}) => {
+      const getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
+      const getColumnByID = getBoardByID.columns.find(el => el.id === state.activeColumn.id);
+      const getTaskID = getColumnByID.tasks.find(el => el.id === state.activeTask.id);
+
+      getTaskID.title = payload.title;
+      getTaskID.description = payload.description;
+      getTaskID.subTasks = payload.subTasks;
+      state.activeBoard = getBoardByID;
+    },
     deleteCurrentBoard: (state, {payload}) => {
       const deletedBoard = state.boards.filter(item => item.id !== state.activeBoard.id);
 
@@ -74,10 +84,11 @@ const boardSlice = createSlice({
    
       console.log(current(getColumnByID));
       
-    state.activeTask = filteredTask;
-    state.activeColumn.tasks = state.activeTask;
-    state.activeBoard.columns = state.activeColumn;
-    state.activeBoard = getBoardByID;
+      state.activeTask = filteredTask;
+      state.activeColumn.tasks = state.activeTask;
+      state.activeBoard.columns = getColumnByID;
+      getColumnByID.tasks.push(state.activeTask)
+      state.activeBoard = getBoardByID;
     }
   }
 });
@@ -88,6 +99,7 @@ export const {
   deleteCurrentBoard,
   addColumn,
   editBoard,
+  editTask,
   addTask,
   setActiveTask,
   moveTask

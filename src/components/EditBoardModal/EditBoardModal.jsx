@@ -8,11 +8,10 @@ import "./EditBoardModal.scss";
 const EditBoardModal = () => {
   const dispatch = useDispatch();
   const {activeBoard} =  useSelector(store => store.board);
-  let arrCopy = [...activeBoard.columns];
   const [boardName,
     setBoardName] = useState(activeBoard.name);
   const [columns,
-    setColumns] = useState(arrCopy);
+    setColumns] = useState([...activeBoard.columns]);
 
   const nameChangeHandler = (e) => {
     setBoardName(e.target.value)
