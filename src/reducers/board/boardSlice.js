@@ -19,7 +19,6 @@ const boardSlice = createSlice({
       const getTaskID = getColumnByID.tasks.find(el => el.id === payload.taskID);
       state.activeColumn = getColumnByID;
       state.activeTask = getTaskID;
-      console.log(current(getColumnByID))
     },
     addBoard: (state, {payload}) => {
       const newBoard = {
@@ -65,8 +64,7 @@ const boardSlice = createSlice({
     },
     addTask: (state, {payload}) => {
       const getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
-
-     const getColumnByID = getBoardByID.columns.find(el => el.id === payload.status);
+      const getColumnByID = getBoardByID.columns.find(el => el.id === payload.status);
       const newTask = {
         id: payload.id,
         title: payload.title,
@@ -79,16 +77,25 @@ const boardSlice = createSlice({
     },
     moveTask: (state, {payload}) => {
       let getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
-      let getColumnByID = getBoardByID.columns.find(el => el.id === payload);
-      let filteredTask =state.activeColumn.tasks.filter(el => el.id !== state.activeTask.id);
-   
-      console.log(current(getColumnByID));
-      
-      state.activeTask = filteredTask;
-      state.activeColumn.tasks = state.activeTask;
-      state.activeBoard.columns = getColumnByID;
-      getColumnByID.tasks.push(state.activeTask)
+      let currentColumnByID = getBoardByID.columns.find(el => el.id === state.activeColumn.id);
+      let movedColumnByID = getBoardByID.columns.find(el => el.id === payload);
+      let filteredTask = currentColumnByID.tasks.filter(el => el.id !== state.activeTask.id);
+
+      state.activeColumn.tasks = filteredTask;
+      currentColumnByID.tasks = filteredTask;
+      movedColumnByID.tasks.push(state.activeTask); 
       state.activeBoard = getBoardByID;
+    },
+    deleteCurrentTask: (state, {payload}) => {
+      let getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
+      let getColumnByID = getBoardByID.columns.find(el => el.id === state.activeColumn.id);
+      let filteredTask = state.activeColumn.tasks.filter(el => el.id !== state.activeTask.id);
+
+      state.activeColumn.tasks = filteredTask;
+      state.activeTask = null;
+      getColumnByID.tasks = state.activeColumn.tasks;
+      state.activeBoard = getBoardByID;
+
     }
   }
 });
@@ -102,7 +109,8 @@ export const {
   editTask,
   addTask,
   setActiveTask,
-  moveTask
+  moveTask,
+  deleteCurrentTask
 } = boardSlice.actions;
 
 export default boardSlice.reducer;

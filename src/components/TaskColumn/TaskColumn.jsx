@@ -1,10 +1,10 @@
 import React from 'react';
 import TaskItem from "../TaskItem/TaskItem";
-import { useDispatch, useSelector } from "react-redux/es/exports";
+import {  useSelector } from "react-redux/es/exports";
 import "./TaskColumn.scss";
 
 const TaskColumn = ({name, id}) => {
-  const dispatch = useDispatch();
+
   const {activeBoard} = useSelector(store => store.board);
   const columnsByID = activeBoard.columns.find(el => el.id ===  id);
   return (

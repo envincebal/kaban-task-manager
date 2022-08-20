@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
-import {hideModal, editTask, deleteTask, taskMenu} from "../../reducers/modal/modalSlice";
-import { moveTask } from "../../reducers/board/boardSlice";
+import {hideModal, editTask, taskMenu} from "../../reducers/modal/modalSlice";
+import { moveTask, deleteCurrentTask } from "../../reducers/board/boardSlice";
 import {useDispatch, useSelector} from "react-redux";
 import mobile from "../../assets/icon-vertical-ellipsis.svg";
 import check from "../../assets/icon-check.svg";
@@ -9,15 +9,11 @@ import "./TaskItemModal.scss";
 const TaskItemModal = () => {
   const dispatch = useDispatch();
   const {taskMenuToggle} = useSelector(store => store.modal);
-  const {activeBoard,activeColumn, activeTask} = useSelector(store => store.board);
+  const {activeBoard, activeTask} = useSelector(store => store.board);
 
-  const [status, setStatus] = useState(activeColumn.board);
+
   const [statusToggle, setStatusToggle] = useState(false);
 
-  const statusHandler = (e) => {
-    dispatch(hideModal())
-    setStatus(e.target.value);
-  }
   return (
     <div className="task-item-modal">
       <div className="task-header">
@@ -37,7 +33,7 @@ const TaskItemModal = () => {
             <button
               onClick={() => {
               dispatch(hideModal());
-              dispatch(deleteTask());
+              dispatch(deleteCurrentTask());
             }}
               className="delete-board-btn">Delete Task</button>
           </div>
@@ -69,7 +65,6 @@ const TaskItemModal = () => {
               <li onClick={() => {
                 dispatch(moveTask(item.id))
                 dispatch(hideModal())
-
               }} key={index} className="status-item" value={item.id}>{item.board}</li>
             ))
           }
