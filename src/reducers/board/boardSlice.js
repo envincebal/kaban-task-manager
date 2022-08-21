@@ -69,7 +69,8 @@ const boardSlice = createSlice({
         id: payload.id,
         title: payload.title,
         description: payload.description,
-        subTasks: payload.subTasks
+        subTasks: payload.subTasks,
+        taskCount: payload.count
       }
 
       getColumnByID.tasks.push(newTask);
@@ -79,11 +80,16 @@ const boardSlice = createSlice({
       let getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
       let currentColumnByID = getBoardByID.columns.find(el => el.id === state.activeColumn.id);
       let movedColumnByID = getBoardByID.columns.find(el => el.id === payload);
+      let currentActiveBoardColumn = state.activeBoard.columns.find(el => el.id === state.activeColumn.id);
+      let movedActiveBoardColumn = state.activeBoard.columns.find(el => el.id === payload);
+
       let filteredTask = currentColumnByID.tasks.filter(el => el.id !== state.activeTask.id);
 
       state.activeColumn.tasks = filteredTask;
       currentColumnByID.tasks = filteredTask;
       movedColumnByID.tasks.push(state.activeTask); 
+      // movedActiveBoardColumn.tasks.taskCount = movedColumnByID.tasks.taskCount;
+      console.log(current(movedActiveBoardColumn).tasks)
       state.activeBoard = getBoardByID;
     },
     deleteCurrentTask: (state, {payload}) => {
@@ -95,7 +101,24 @@ const boardSlice = createSlice({
       state.activeTask = null;
       getColumnByID.tasks = state.activeColumn.tasks;
       state.activeBoard = getBoardByID;
+    },
+    setCheckbox: (state, {payload}) => {
+      let getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
+      let getColumnByID = getBoardByID.columns.find(el => el.id === state.activeColumn.id);
+      const getTaskID = getColumnByID.tasks.find(el => el.id === state.activeTask.id);
+      const getSubTaskByID = getTaskID.subTasks.find(el => el.id === payload.id);
 
+      if(!getSubTaskByID.checked){
+        getSubTaskByID.checked = true;
+        getTaskID.taskCount += 1;
+      }else{
+        getSubTaskByID.checked = false;
+        getTaskID.taskCount -= 1;
+      }
+
+      state.activeTask.subTasks = getTaskID.subTasks;
+      state.activeTask.taskCount = getTaskID.taskCount;
+      state.activeBoard = getBoardByID;
     }
   }
 });
@@ -110,7 +133,8 @@ export const {
   addTask,
   setActiveTask,
   moveTask,
-  deleteCurrentTask
+  deleteCurrentTask,
+  setCheckbox
 } = boardSlice.actions;
 
 export default boardSlice.reducer;

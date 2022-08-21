@@ -10,7 +10,7 @@ const TaskColumn = ({name, id}) => {
   return (
     <div className="board-column">
       <h3>
-        <span className="board-color"></span>{name} ({3})</h3>
+        <span className="board-color"></span>{name} ({columnsByID.tasks.length})</h3>
       <ul className="task-list">
       {columnsByID.tasks.map((item, index) => (
         <TaskItem
@@ -18,6 +18,7 @@ const TaskColumn = ({name, id}) => {
           taskID={item.id}
           key={index}
           title={item.title}
+          taskCount={item.taskCount}
           tasksLength={item.subTasks.length}
         />
       ))}

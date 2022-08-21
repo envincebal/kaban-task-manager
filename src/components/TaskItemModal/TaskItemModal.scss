@@ -14,12 +14,16 @@
   background-color: $dark-grey;
 
   label,
-  input, .status-option, .status {
+  input,
+  .status-option,
+  .status {
     background-color: $dark-grey !important;
     font-family: inherit !important;
   }
 
-  input, .status-option,.status  {
+  input,
+  .status-option,
+  .status {
     background-color: transparent;
     border: 0px solid;
     color: $white;
@@ -35,7 +39,7 @@
   }
 
   input:focus,
-   select:focus {
+  select:focus {
     outline: none;
   }
 
@@ -45,7 +49,6 @@
     align-items: center;
     .task-item-title {
       padding-right: 20px;
-
     }
     .menu-btn {
       width: 5px;
@@ -73,7 +76,7 @@
         margin-bottom: 20px;
       }
       .delete-board-btn {
-      color: $red;
+        color: $red;
       }
     }
   }
@@ -94,7 +97,7 @@
 
       .subtask-item {
         border-radius: 5px;
-        background-color: $very-dark-grey;
+        background-color: $very-dark-grey !important;
         font-size: 13px;
         padding: 12px;
         align-items: center;
@@ -103,32 +106,24 @@
         cursor: pointer;
         transition: all 0.3s ease;
 
-        .checkbox {
-          width: 16px;
-          height: 16px;
-          background-color: $grey;
-          border: 1px solid $light-grey;
-          border-radius: 3px;
-          margin-right: 15px;
-          .check {
-            position: relative;
-            top: 1px;
-            left: 1px;
-            width: 12px;
-            height: 12px;
-          }
+
+        .subtask-text {
+          margin-left: 10px;
+          display: inline-block;
+          text-decoration: line-through;
+          color: $light-grey;
         }
       }
-      .subtask-item:hover{
-        background-color: $light-blue;
+      .subtask-item:hover {
+        background-color: $dark-blue !important;
       }
     }
   }
 
-  .current-status-div{
+  .current-status-div {
     margin-top: 20px;
     position: relative;
-    .status{
+    .status {
       margin-top: 10px;
       display: flex;
       justify-content: space-between;
@@ -137,18 +132,18 @@
       cursor: pointer;
     }
 
-    .status-list{
+    .status-list {
       background-color: $very-dark-grey;
       position: absolute;
       border-radius: 5px;
       width: 100%;
-      li{
+      li {
         padding: 5px;
         list-style: none;
         cursor: pointer;
         color: $light-grey;
       }
-      li:hover{
+      li:hover {
         background-color: $grey;
         color: $dark-blue;
       }

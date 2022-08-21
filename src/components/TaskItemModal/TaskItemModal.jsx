@@ -1,9 +1,8 @@
 import React,{useState} from 'react';
 import {hideModal, editTask, taskMenu} from "../../reducers/modal/modalSlice";
-import { moveTask, deleteCurrentTask } from "../../reducers/board/boardSlice";
+import { moveTask, deleteCurrentTask, setCheckbox } from "../../reducers/board/boardSlice";
 import {useDispatch, useSelector} from "react-redux";
 import mobile from "../../assets/icon-vertical-ellipsis.svg";
-import check from "../../assets/icon-check.svg";
 import "./TaskItemModal.scss";
 
 const TaskItemModal = () => {
@@ -11,13 +10,25 @@ const TaskItemModal = () => {
   const {taskMenuToggle} = useSelector(store => store.modal);
   const {activeBoard, activeTask} = useSelector(store => store.board);
 
-
+  const [checked, setChecked] = useState(activeTask.subTasks);
   const [statusToggle, setStatusToggle] = useState(false);
+
+  const checkedChangeHandler = (i, e) => {
+    const { name, checked } = e.target;
+    setChecked(columns => columns.map((el, index) => index === i
+      ? {
+        ...el,
+        [name]: checked,
+      }
+      : el
+    ));
+  }
 
   return (
     <div className="task-item-modal">
       <div className="task-header">
         <h3 className="task-item-title">{activeTask.title}</h3>
+       
         <img
           onClick={() => dispatch(taskMenu())}
           className="menu-btn"
@@ -42,15 +53,14 @@ const TaskItemModal = () => {
       </div>
       <p className="task-text">{activeTask.description}</p>
       <div className="task-subtask-div">
-        <h5 className="subtask-counter">Subtasks (2 of 3)</h5>
+        <h5 className="subtask-counter">{`Subtasks (2 of ${activeTask.subTasks.length})`}</h5>
         <ul className="subtask-list">
           {
             activeTask.subTasks.map((item, index) => (
-          <li className="subtask-item" key={index}>
-            <div className="checkbox">
-              <img className="check" src={check} alt="checkbox"/>
-            </div>
-            {item.task}</li>
+          <label className="subtask-item" key={index} >
+
+            <input onClick={() => dispatch(setCheckbox({id: item.id}))} className="checkbox" name="checked" onChange={(e) => checkedChangeHandler(index, e)} value={item.checked} checked={item.checked}  type="checkbox" />
+          <span className="subtask-text">{item.task}</span>  </label>
             ))
           }
         </ul>

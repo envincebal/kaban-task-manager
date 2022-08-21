@@ -12,8 +12,8 @@ const NewTaskModal = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState(activeBoard.columns[0].id);
-  const [subTasks, setSubTasks] = useState([{task: "", checked: false }
-  , {task: "", checked: false}]);
+  const [subTasks, setSubTasks] = useState([{id:uuid(), task: "", checked: false }
+  , {id:uuid(), task: "", checked: false}]);
 
   const titleChangeHandler = (e) => {
     setTitle(e.target.value)
@@ -33,7 +33,7 @@ const NewTaskModal = () => {
   }
 
   const addSubTask = () => {
-    setSubTasks([...subTasks, {task: "", checked: false}])
+    setSubTasks([...subTasks, {id:uuid() ,task: "", checked: false}])
   }
 
   const deleteSubTask = (i) => {
@@ -104,7 +104,8 @@ recharge the batteries a little."></textarea>
             title,
             description,
             status,
-            subTasks
+            subTasks,
+            count: 0
           }))
           dispatch(hideModal())}}
         text={"Create Task"}
