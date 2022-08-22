@@ -11,19 +11,16 @@ const NewTaskModal = () => {
   const {activeBoard} = useSelector(store => store.board);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState(activeBoard.columns[0].id);
   const [subTasks, setSubTasks] = useState([{id:uuid(), task: "", checked: false }
   , {id:uuid(), task: "", checked: false}]);
-
+  const [status, setStatus] = useState(activeBoard.columns[0].id);
+  const [statusToggle, setStatusToggle] = useState(false);
+  const [option, setOption] = useState(activeBoard.columns[0].board)
   const titleChangeHandler = (e) => {
     setTitle(e.target.value)
   }
   const descriptionChangeHandler = (e) => {
     setDescription(e.target.value)
-  }
-
-  const statusHandler = (e) => {
-    setStatus(e.target.value);
   }
 
   const subTasksChangeHandler = (i, e) => {
@@ -89,13 +86,22 @@ recharge the batteries a little."></textarea>
         className={"add-column-subtask"}/>
       <div className="status-div">
         <label>Status</label>
-        <select className="status" onChange={statusHandler}>
+        <button onClick={() => setStatusToggle(!statusToggle)} className="status"><span>{option}</span> <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path stroke="#635FC7" strokeWidth="2" fill="none" d="m1 1 4 4 4-4"/></svg></button>
           {
+            statusToggle &&(
+              <ul className="status-list">
+             {
             activeBoard.columns.map((item, index) => (
-              <option key={index} className="status-option" value={item.id}>{item.board}</option>
+              <li onClick={() =>{ 
+                setOption(item.board)
+                setStatus(item.id)
+                setStatusToggle(!statusToggle);
+              }} key={index} className="status-option" value={item.id}>{item.board}</li>
             ))
           }
-        </select>
+          </ul>
+            )
+          }
       </div>
       <Button
         onClick={() => {

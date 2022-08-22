@@ -14,9 +14,7 @@
   background-color: $dark-grey;
 
   label,
-  input,
-  .status-option,
-  .status {
+  input {
     background-color: $dark-grey !important;
     font-family: inherit !important;
   }
@@ -106,10 +104,12 @@
         cursor: pointer;
         transition: all 0.3s ease;
 
-
         .subtask-text {
           margin-left: 10px;
           display: inline-block;
+        }
+
+        .checked-text {
           text-decoration: line-through;
           color: $light-grey;
         }
@@ -130,6 +130,7 @@
       align-items: center;
       width: 100%;
       cursor: pointer;
+      font-weight: 400;
     }
 
     .status-list {

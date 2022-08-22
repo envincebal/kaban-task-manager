@@ -15,14 +15,14 @@
 
   label,
   input,
-  textarea,select, option, .status-option {
+  textarea {
     background-color: $dark-grey !important;
     display: block !important;
     font-family: inherit !important;
   }
 
   input,
-  textarea, select, option, .status-option {
+  textarea,.status {
     background-color: transparent;
     border: 0px solid;
     color: $white;
@@ -40,7 +40,8 @@
   textarea { resize: none; }
 
   input:focus,
-  textarea:focus, select:focus {
+  textarea:focus,
+  select:focus {
     outline: none;
   }
 
@@ -82,9 +83,32 @@
     }
   }
   .status-div{
+    position: relative;
     .status{
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       width: 100%;
       cursor: pointer;
+      font-weight: 400;
+    }
+    .status-list{
+
+      background-color: $very-dark-grey;
+      position: absolute;
+      border-radius: 5px;
+      width: 100%;
+      li {
+        padding: 5px;
+        list-style: none;
+        cursor: pointer;
+        color: $light-grey;
+      }
+      li:hover {
+        background-color: $grey;
+        color: $dark-blue;
+      }
     }
   }
 }

@@ -1,17 +1,21 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { hideModal } from "../../reducers/modal/modalSlice";
-import { editTask } from "../../reducers/board/boardSlice";
+import { editTask, moveTask } from "../../reducers/board/boardSlice";
 import Button from "../Button/Button";
+import {v4 as uuid} from "uuid";
 import "./EditTaskModal.scss"
 
 const EditTaskModal = () => {
   const dispatch = useDispatch();
-  const {activeTask} = useSelector(store => store.board);
-
+  const {activeTask, activeBoard} = useSelector(store => store.board);
   const [title, setTitle] = useState(activeTask.title);
   const [description , setDescription] = useState(activeTask.description);
   const [subTasks, setSubTasks] = useState([...activeTask.subTasks]);
+  const [removedSubTask, setRemovedSubTask] = useState(0);
+  const [status, setStatus] = useState(activeBoard.columns[0].id);
+  const [statusToggle, setStatusToggle] = useState(false);
+  const [option, setOption] = useState(activeBoard.columns[0].board)
   const titleHandler = e => {
     setTitle(e.target.value);
   }
@@ -31,18 +35,27 @@ const EditTaskModal = () => {
   }
   
   const addSubTask = () => {
-    setSubTasks([...subTasks, {task: ""}])
+    setSubTasks([...subTasks, {id: uuid(), task: "", checked: false}])
   }
 
-  const deleteSubTask = (i) => {
+  const deleteSubTask = (i,id) => {
     let filteredSubTasks = [...subTasks];
+    let getSubTaskByID = subTasks.find(el => el.id === id);
+
+    if(getSubTaskByID.checked){
+      setRemovedSubTask(removedSubTask + 1);
+    }
+
     filteredSubTasks.splice(i, 1);
+
     setSubTasks(filteredSubTasks);
+
   }
+
   return (
     <div className="edit-task-modal">
-      {console.log(subTasks)}
-      <h3 className="edit-task-title">Edit New Task</h3>
+     {console.log(removedSubTask)}
+      <h3 className="edit-task-title">Edit Task</h3>
       <div className="edit-task-title-div">
         <label htmlFor="edit-task-title">Title</label>
         <input
@@ -76,7 +89,8 @@ recharge the batteries a little."></textarea>
                 value={item.task}
                 name="task"
                 placeholder="e.g. Web Design"/>
-              <svg onClick={() => deleteSubTask(index)} width="15" height="15" xmlns="http://www.w3.org/2000/svg">
+              <svg onClick={() => {
+                deleteSubTask(index, item.id)}} width="15" height="15" xmlns="http://www.w3.org/2000/svg">
                 <g fill="#828FA3" fillRule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g>
               </svg>
             </div> 
@@ -85,19 +99,33 @@ recharge the batteries a little."></textarea>
       </div>
       <Button onClick={() => addSubTask()} text={"+ Add New Subtask"} className={"add-column-subtask"}/>
       <div className="edit-status-div">
-        <label htmlFor="edit-status">Status</label>
-        <select name="edit-status" className="edit-status">
-          <option className="edit-status-option" value="Todo">Todo</option>
-          <option className="edit-status-option" value="saab">Saab</option>
-        </select>
+
+        <button onClick={() => setStatusToggle(!statusToggle)} className="edit-status"><span>{option}</span> <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path stroke="#635FC7" strokeWidth="2" fill="none" d="m1 1 4 4 4-4"/></svg></button>
+          {
+            statusToggle &&(
+              <ul className="edit-status-list">
+             {
+            activeBoard.columns.map((item, index) => (
+              <li onClick={() =>{ 
+                setOption(item.board)
+                setStatus(item.id)
+                setStatusToggle(!statusToggle);
+              }} key={index} className="status-option" value={item.id}>{item.board}</li>
+            ))
+          }
+          </ul>
+            )
+          }
       </div>
 
       <Button onClick={() => {
         dispatch(editTask({
           title,
           description,
-          subTasks
+          subTasks,
+          removedChecked: removedSubTask
         }))
+        dispatch(moveTask(status))
         dispatch(hideModal());
       }} text={"Save Changes"} className={"create-save-changes"}/>
     </div>

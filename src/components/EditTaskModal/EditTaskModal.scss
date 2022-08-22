@@ -1,6 +1,5 @@
 @import "../../styles/variables.scss";
 
-
 .edit-task-modal {
   color: $white;
   border-radius: 10px;
@@ -16,14 +15,15 @@
 
   label,
   input,
-  textarea,select, option{
+  textarea {
     background-color: $dark-grey !important;
     display: block !important;
     font-family: inherit !important;
   }
 
   input,
-  textarea, select, option{
+  textarea,
+  .edit-status {
     background-color: transparent;
     border: 0px solid;
     color: $white;
@@ -38,10 +38,13 @@
     font-weight: 700;
   }
 
-  textarea { resize: none; }
+  textarea {
+    resize: none;
+  }
 
   input:focus,
-  textarea:focus, select:focus {
+  textarea:focus,
+  select:focus {
     outline: none;
   }
 
@@ -53,8 +56,8 @@
     margin-bottom: 20px;
   }
 
-  .edit-task-title-div{
-    .edit-task-title{
+  .edit-task-title-div {
+    .edit-task-title {
       width: 100%;
     }
   }
@@ -65,6 +68,7 @@
   }
 
   .edit-subtasks-div {
+    position: relative;
     .edit-subtasks-item-div {
       display: flex;
       align-items: center;
@@ -73,7 +77,7 @@
         flex-grow: 1;
         margin-right: 12px;
       }
-      svg{
+      svg {
         cursor: pointer;
       }
 
@@ -82,10 +86,32 @@
       }
     }
   }
-  .edit-status-div{
-    .edit-status{
+  .edit-status-div {
+    position: relative;
+    .edit-status {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       width: 100%;
       cursor: pointer;
+      font-weight: 400;
+    }
+    .edit-status-list {
+      background-color: $very-dark-grey;
+      position: absolute;
+      border-radius: 5px;
+      width: 100%;
+      li {
+        padding: 5px;
+        list-style: none;
+        cursor: pointer;
+        color: $light-grey;
+      }
+      li:hover {
+        background-color: $grey;
+        color: $dark-blue;
+      }
     }
   }
 }
