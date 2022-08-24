@@ -43,13 +43,13 @@ const boardSlice = createSlice({
       const getBoardByID = state.boards.find(el => el.id === state.activeBoard.id);
       const getColumnByID = getBoardByID.columns.find(el => el.id === state.activeColumn.id);
       const getTaskID = getColumnByID.tasks.find(el => el.id === state.activeTask.id);
-      console.log(payload.removedSubTasks)
 
       getTaskID.taskCount = state.activeTask.taskCount - payload.removedChecked;
       state.activeTask.subTasks = getTaskID.subTasks
       getTaskID.title = payload.title;
       getTaskID.description = payload.description;
       getTaskID.subTasks = payload.subTasks;
+      state.activeTask = getTaskID;
       state.activeBoard = getBoardByID;
     },
     deleteCurrentBoard: (state, {payload}) => {
@@ -84,7 +84,7 @@ const boardSlice = createSlice({
       let currentColumnByID = getBoardByID.columns.find(el => el.id === state.activeColumn.id);
       let movedColumnByID = getBoardByID.columns.find(el => el.id === payload);
       let filteredTask = currentColumnByID.tasks.filter(el => el.id !== state.activeTask.id);
-      
+
       state.activeColumn.tasks = filteredTask;
       currentColumnByID.tasks = filteredTask;
       movedColumnByID.tasks.push(state.activeTask); 

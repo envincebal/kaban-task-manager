@@ -15,7 +15,8 @@ const EditTaskModal = () => {
   const [removedSubTask, setRemovedSubTask] = useState(0);
   const [status, setStatus] = useState(activeBoard.columns[0].id);
   const [statusToggle, setStatusToggle] = useState(false);
-  const [option, setOption] = useState(activeBoard.columns[0].board)
+  const [option, setOption] = useState(activeBoard.columns[0].board);
+
   const titleHandler = e => {
     setTitle(e.target.value);
   }
@@ -54,7 +55,6 @@ const EditTaskModal = () => {
 
   return (
     <div className="edit-task-modal">
-     {console.log(removedSubTask)}
       <h3 className="edit-task-title">Edit Task</h3>
       <div className="edit-task-title-div">
         <label htmlFor="edit-task-title">Title</label>

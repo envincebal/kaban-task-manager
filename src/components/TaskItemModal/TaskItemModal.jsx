@@ -35,7 +35,7 @@ const TaskItemModal = () => {
               className="delete-board-btn">Delete Task</button>
           </div>
         )}
- 
+
       </div>
       <p className="task-text">{activeTask.description}</p>
       <div className="task-subtask-div">
@@ -52,7 +52,7 @@ const TaskItemModal = () => {
         </ul>
         <div className="current-status-div">
           <label>Current Status</label>
-          <button onClick={() => setStatusToggle(!statusToggle)} className="status"><span>h</span> <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path stroke="#635FC7" strokeWidth="2" fill="none" d="m1 1 4 4 4-4"/></svg></button>
+          <button onClick={() => setStatusToggle(!statusToggle)} className="status"><span>{activeBoard.columns[0].board}</span> <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path stroke="#635FC7" strokeWidth="2" fill="none" d="m1 1 4 4 4-4"/></svg></button>
           {
             statusToggle &&(
               <ul className="status-list">

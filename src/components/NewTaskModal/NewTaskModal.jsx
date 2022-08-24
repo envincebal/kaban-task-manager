@@ -15,10 +15,12 @@ const NewTaskModal = () => {
   , {id:uuid(), task: "", checked: false}]);
   const [status, setStatus] = useState(activeBoard.columns[0].id);
   const [statusToggle, setStatusToggle] = useState(false);
-  const [option, setOption] = useState(activeBoard.columns[0].board)
+  const [option, setOption] = useState(activeBoard.columns[0].board);
+
   const titleChangeHandler = (e) => {
     setTitle(e.target.value)
   }
+
   const descriptionChangeHandler = (e) => {
     setDescription(e.target.value)
   }
