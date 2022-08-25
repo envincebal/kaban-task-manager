@@ -116,6 +116,10 @@
     .slider.round:before {
       border-radius: 50%;
     }
+
+    .hide-slider{
+      display: none;
+    }
   }
 
   .sidebar-toggle-btn {
@@ -140,8 +144,19 @@
       fill: $dark-blue;
     }
   }
+  .hidden-toggle-btn{
+    width: 64px;
+    padding-left: 25px;
+    background-color: $dark-blue;
+    color: $white;
+  }
   .sidebar-toggle-btn:hover {
     color: $dark-blue;
     background-color: $white;
   }
+}
+
+.hide-sidebar{
+  width: 0px;
+  min-width: 0px;
 }

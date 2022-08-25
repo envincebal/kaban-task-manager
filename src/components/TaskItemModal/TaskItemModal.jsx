@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {hideModal, editTask, taskMenu} from "../../reducers/modal/modalSlice";
+import {hideModal, editTask, taskMenu, deleteTask} from "../../reducers/modal/modalSlice";
 import { moveTask, deleteCurrentTask, setCheckbox } from "../../reducers/board/boardSlice";
 import {useDispatch, useSelector} from "react-redux";
 import mobile from "../../assets/icon-vertical-ellipsis.svg";
@@ -8,18 +8,19 @@ import "./TaskItemModal.scss";
 const TaskItemModal = () => {
   const dispatch = useDispatch();
   const {taskMenuToggle} = useSelector(store => store.modal);
-  const {activeBoard, activeTask} = useSelector(store => store.board);
+  const {activeBoard, activeTask, activeColumn} = useSelector(store => store.board);
   const [statusToggle, setStatusToggle] = useState(false);
 
   return (
     <div className="task-item-modal">
       <div className="task-header">
         <h3 className="task-item-title">{activeTask.title}</h3>
-        <img
-          onClick={() => dispatch(taskMenu())}
-          className="menu-btn"
+        <button className="menu-btn" onClick={() => dispatch(taskMenu())}>
+          <img
           src={mobile}
-          alt="menu button"/> {taskMenuToggle && (
+          alt="menu button"/> 
+        </button>
+        {taskMenuToggle && (
           <div className="menu-div">
             <button
               onClick={() => {
@@ -30,7 +31,7 @@ const TaskItemModal = () => {
             <button
               onClick={() => {
               dispatch(hideModal());
-              dispatch(deleteCurrentTask());
+              dispatch(deleteTask());
             }}
               className="delete-board-btn">Delete Task</button>
           </div>
@@ -52,7 +53,7 @@ const TaskItemModal = () => {
         </ul>
         <div className="current-status-div">
           <label>Current Status</label>
-          <button onClick={() => setStatusToggle(!statusToggle)} className="status"><span>{activeBoard.columns[0].board}</span> <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path stroke="#635FC7" strokeWidth="2" fill="none" d="m1 1 4 4 4-4"/></svg></button>
+          <button onClick={() => setStatusToggle(!statusToggle)} className="status"><span>{activeColumn.board}</span> <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path stroke="#635FC7" strokeWidth="2" fill="none" d="m1 1 4 4 4-4"/></svg></button>
           {
             statusToggle &&(
               <ul className="status-list">
