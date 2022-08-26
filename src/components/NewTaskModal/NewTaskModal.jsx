@@ -42,7 +42,8 @@ const NewTaskModal = () => {
   }
 
   return (
-    <div className="new-task-modal">
+    <div className="new-task-wrapper">
+      <div className="new-task-modal">
       <h3 className="new-task-title">Add New Task</h3>
       <div className="task-title-div">
         <label>Title</label>
@@ -119,6 +120,8 @@ recharge the batteries a little."></textarea>
         text={"Create Task"}
         className={"create-save-changes"}/>
     </div>
+    </div>
+    
   )
 }
 

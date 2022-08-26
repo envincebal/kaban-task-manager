@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const modalSlice = createSlice({
   name: "modal",
   initialState: {
+    sideBarModal: false,
     editBoardModal: false,
     editTaskModal: false,
     newBoardModal: false,
@@ -15,6 +16,9 @@ const modalSlice = createSlice({
     navMenuToggle: false
   },
   reducers: {
+    sideBar: (state) => {
+      state.sideBarModal = true;
+    },
     editBoard: (state) => {
       state.editBoardModal = true;
     },
@@ -46,6 +50,7 @@ const modalSlice = createSlice({
       state.navMenuToggle = !state.navMenuToggle;
     },
     hideModal: (state) => {
+      state.sideBarModal = false;
       state.editBoardModal = false;
       state.editTaskModal = false;
       state.newBoardModal = false;
@@ -59,6 +64,7 @@ const modalSlice = createSlice({
 });
 
 export const {
+  sideBar,
   editBoard,
   editTask,
   newBoard,

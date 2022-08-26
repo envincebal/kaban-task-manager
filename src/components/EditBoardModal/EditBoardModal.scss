@@ -1,79 +1,88 @@
 @import "../../styles/variables.scss";
 
-
-.edit-board-modal {
-  color: $white;
-  border-radius: 10px;
-  padding: 30px;
+.edit-board-wrapper {
+  padding: 0 15px;
   z-index: 2;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 480px;
-  height: auto;
-  background-color: $dark-grey;
-
-  label,
-  input,
-  textarea,select, option{
-    background-color: $dark-grey !important;
-    display: block !important;
-    font-family: inherit !important;
-  }
-
-  input,
-  textarea, select, option{
-    background-color: transparent;
-    border: 0px solid;
+  max-width: 480px;
+  width: 100%;
+  .edit-board-modal {
     color: $white;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid $grey;
-  }
+    border-radius: 10px;
+    padding: 20px;
+    height: auto;
+    background-color: $dark-grey;
 
-  label {
-    font-size: 14px;
-    margin-bottom: 5px;
-    font-weight: 700;
-  }
+    label,
+    input,
+    textarea,
+    select,
+    option {
+      background-color: $dark-grey !important;
+      display: block !important;
+      font-family: inherit !important;
+    }
 
-  textarea { resize: none; }
+    input,
+    textarea,
+    select,
+    option {
+      background-color: transparent;
+      border: 0px solid;
+      color: $white;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid $grey;
+    }
 
-  input:focus,
-  textarea:focus, select:focus {
-    outline: none;
-  }
+    label {
+      font-size: 14px;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
 
-  .edit-modal-title,
-  .edit-board-name-div,
-  .edit-board-columns-div {
-    margin-bottom: 20px;
-  }
+    textarea {
+      resize: none;
+    }
 
-  .edit-board-name-div{
-    .edit-task-title{
-      width: 100%;
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+    }
+
+    .edit-modal-title,
+    .edit-board-name-div,
+    .edit-board-columns-div {
+      margin-bottom: 20px;
+    }
+
+    .edit-board-name-div {
+      .edit-task-title {
+        width: 100%;
+      }
+    }
+
+    .edit-board-columns-div {
+      .edit-columns-item-div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        .edit-column-input {
+          flex-grow: 1;
+          margin-right: 12px;
+        }
+        svg {
+          cursor: pointer;
+        }
+
+        svg g:hover {
+          fill: $red;
+        }
+      }
     }
   }
-
-  .edit-board-columns-div{
-    .edit-columns-item-div {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      .edit-column-input {
-        flex-grow: 1;
-        margin-right: 12px;
-      }
-      svg{
-        cursor: pointer;
-      }
-
-      svg g:hover {
-        fill: $red;
-      }
-    }
-  }
- 
 }

@@ -21,8 +21,6 @@ const BoardBody = () => {
               activeBoard.columns.map((item) => {
                 return <TaskColumn id={item.id} name={item.board} key={item.id}/>
               })
-            
-
             }
             <div onClick={() => dispatch(newColumn())} className="new-board-column">
               <h2>+ New Column</h2>

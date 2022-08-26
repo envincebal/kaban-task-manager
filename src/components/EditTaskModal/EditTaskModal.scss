@@ -1,15 +1,18 @@
 @import "../../styles/variables.scss";
 
-.edit-task-modal {
-  color: $white;
-  border-radius: 10px;
-  padding: 30px;
+.edit-task-wrapper{
   z-index: 2;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 480px;
+  width: 100%;
+  max-width: 480px;
+  padding: 0 15px;
+.edit-task-modal {
+  color: $white;
+  border-radius: 10px;
+  padding: 20px;
   height: auto;
   background-color: $dark-grey;
 
@@ -114,4 +117,6 @@
       }
     }
   }
+}
+
 }

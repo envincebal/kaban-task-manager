@@ -1,72 +1,76 @@
 @import "../../styles/variables.scss";
 
-.new-board-modal {
-  color: $white;
-  border-radius: 10px;
-  padding: 30px;
+.new-board-wrapper {
+  padding: 0 15px;
   z-index: 2;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 480px;
-  height: auto;
-  background-color: $dark-grey;
-  
-  label,
-  input {
-    background-color: $dark-grey;
-    display: block;
-    padding: 10px;
-    border-radius: 5px;
-  }
-
-  label{
-    font-size: 14px;
-    margin-bottom: 5px;
-    font-weight: 700;
-  }
-
-  input{
-    background-color: transparent;
-    border: 0px solid;
+  max-width: 480px;
+  width: 100%;
+  .new-board-modal {
     color: $white;
-    border: 1px solid $grey;
-  }
+    border-radius: 10px;
+    padding: 20px;
+    height: auto;
+    background-color: $dark-grey;
 
-  input:focus{
-    outline: none;
-  }
-
-  .modal-title{
-    margin-bottom: 20px;
-  }
-
-  .board-name-div{
-    margin-bottom: 20px;
-    input{
-      width: 100%;
+    label,
+    input {
+      background-color: $dark-grey;
+      display: block;
+      padding: 10px;
+      border-radius: 5px;
     }
-  }
 
-  .board-columns-div{
-    margin-bottom: 15px;
+    label {
+      font-size: 14px;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
 
-    .columns-item-div{
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      .column-input{
-        margin-right: 12px;
-        flex-grow: 1;
+    input {
+      background-color: transparent;
+      border: 0px solid;
+      color: $white;
+      border: 1px solid $grey;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    .modal-title {
+      margin-bottom: 20px;
+    }
+
+    .board-name-div {
+      margin-bottom: 20px;
+      input {
+        width: 100%;
       }
+    }
 
-      svg{
-        cursor: pointer;
-      }
+    .board-columns-div {
+      margin-bottom: 15px;
 
-      svg g:hover {
-        fill: $red;
+      .columns-item-div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        .column-input {
+          margin-right: 12px;
+          flex-grow: 1;
+        }
+
+        svg {
+          cursor: pointer;
+        }
+
+        svg g:hover {
+          fill: $red;
+        }
       }
     }
   }

@@ -15,6 +15,7 @@ import TaskItemModal from "./components/TaskItemModal/TaskItemModal";
 function App() {
 
   let {
+    sideBarModal,
     newBoardModal,
     newTaskModal,
     newColumnModal,
@@ -33,12 +34,11 @@ navMenuToggle
       taskMenuToggle && dispatch(taskMenu());
       navMenuToggle && dispatch(navMenu())
     }}>
-      {(newBoardModal || newTaskModal || newColumnModal || editTaskModal || editBoardModal || deleteBoardModal || deleteTaskModal || taskItemModal) && (
+      {(newBoardModal || newTaskModal || newColumnModal || editTaskModal || editBoardModal || deleteBoardModal || deleteTaskModal || taskItemModal || sideBarModal) && (
         <div>
           <div
             onClick={() => {
             dispatch(hideModal())
-  
           }}
             className="modal-overlay"></div>
           {newBoardModal && <NewBoardModal/>}
@@ -49,6 +49,7 @@ navMenuToggle
           {deleteBoardModal && <DeleteBoardModal/>}
           {deleteTaskModal && <DeleteTaskModal/>}
           {taskItemModal && <TaskItemModal/>}
+          {sideBarModal && <Sidebar />}
         </div>
       )
 }

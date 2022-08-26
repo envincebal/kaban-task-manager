@@ -6,7 +6,9 @@
   background-color: $dark-grey;
   border-bottom: 1px solid $grey;
   display: flex;
-
+  @media (max-width: 768px) {
+    justify-content: space-between;
+  }
   .logo-div {
     display: flex;
     align-items: center;
@@ -17,7 +19,11 @@
     img {
       width: 152px;
     }
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
+
   .main-navbar {
     display: flex;
     align-items: center;
@@ -26,14 +32,40 @@
     justify-content: space-between;
     color: $white;
     position: relative;
+    @media (max-width: 768px) {
+      padding: 0;
+    }
+
+    .board-name {
+      @media (max-width: 768px) {
+       display: none;
+      }
+    }
     .add-task-div {
       display: flex;
       align-items: center;
 
+      .add-task {
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+      .mobile-add-btn {
+        background-color: $dark-blue;
+        padding: 8px 23px;
+        border-radius: 20px;
+        display: none;
+        @media (max-width: 768px) {
+          display: initial;
+        }
+      }
       .menu-btn {
         margin-left: 15px;
         cursor: pointer;
         padding: 20px;
+        @media (max-width: 768px) {
+          margin-left: 0px;
+        }
       }
     }
     .menu-div {
@@ -56,8 +88,29 @@
         margin-bottom: 20px;
       }
       .delete-board-btn {
-      color: $red;
+        color: $red;
       }
+    }
+  }
+
+  .mobile-logo-div {
+    padding: 0 15px;
+    align-items: center;
+    display: none;
+    @media (max-width: 768px) {
+      display: flex;
+       }
+    h2 {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: $dark-grey;
+      display: flex;
+      align-items: center;
+      color: $white;
+      margin-left: 10px;
     }
   }
 }

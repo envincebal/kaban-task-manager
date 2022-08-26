@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {hideModal, editTask, taskMenu, deleteTask} from "../../reducers/modal/modalSlice";
-import { moveTask, deleteCurrentTask, setCheckbox } from "../../reducers/board/boardSlice";
+import { moveTask, setCheckbox } from "../../reducers/board/boardSlice";
 import {useDispatch, useSelector} from "react-redux";
 import mobile from "../../assets/icon-vertical-ellipsis.svg";
 import "./TaskItemModal.scss";
@@ -12,6 +12,7 @@ const TaskItemModal = () => {
   const [statusToggle, setStatusToggle] = useState(false);
 
   return (
+    <div className="task-item-wrapper">
     <div className="task-item-modal">
       <div className="task-header">
         <h3 className="task-item-title">{activeTask.title}</h3>
@@ -70,6 +71,7 @@ const TaskItemModal = () => {
           }
         </div>
       </div>
+    </div>
     </div>
   )
 }

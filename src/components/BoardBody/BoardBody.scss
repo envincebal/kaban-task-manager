@@ -3,8 +3,7 @@
 .board-body {
   background-color: $very-dark-grey;
   width: 100%;
-  overflow-x: auto;
-
+  overflow-y: auto;
   .new-board-column {
     min-width: 280px;
     margin-top: 35px;
@@ -33,6 +32,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    padding: 0 30px;
     .empty-content {
       text-align: center;
       h3 {
