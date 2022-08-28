@@ -27,15 +27,14 @@ const EditBoardModal = () => {
       }
       : el
     );
+    let empty = editedColumns.find(el => el.board === "");
     setColumns(editedColumns);
 
-    
-      if(!value){
-        setEmptyInputs(false);
-      }else{
-        setEmptyInputs(true);
-      }
-    
+    if(empty){
+      setEmptyInputs(false);
+    }else{
+      setEmptyInputs(true);
+    }
   }
 
   const addColumn = () => {
@@ -50,7 +49,6 @@ const EditBoardModal = () => {
 
   return (
     <div className="edit-board-wrapper">
-      {console.log(!boardName)}
       <div className="edit-board-modal">
         <h3 className="edit-modal-title">Edit Board</h3>
         <div className="edit-board-name-div">
@@ -88,17 +86,14 @@ const EditBoardModal = () => {
           text={"+ Add New Column"}
           className={"add-column-subtask"}/>
         <Button
-
           onClick={() => {
             if(boardName && emptyInputs){
               dispatch(hideModal())
               dispatch(editBoard({boardName,columns}));
             }
- 
           }}
           text={"Save Changes"}
           className={"create-save-changes"}/>
-
       </div>
     </div>
   )

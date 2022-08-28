@@ -19,7 +19,7 @@
   label,
   input,
   textarea {
-    background-color: $dark-grey !important;
+    background-color: $dark-grey ;
     display: block !important;
     font-family: inherit !important;
   }
@@ -119,13 +119,16 @@
       cursor: pointer;
       font-weight: 400;
     }
+    .edit-status{
+      padding: 10px;
+    }
     .edit-status-list {
       background-color: $very-dark-grey;
       position: absolute;
       border-radius: 5px;
       width: 100%;
       li {
-        padding: 5px;
+        padding: 10px;
         list-style: none;
         cursor: pointer;
         color: $light-grey;

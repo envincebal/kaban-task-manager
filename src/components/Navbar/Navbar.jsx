@@ -1,5 +1,6 @@
 import React from 'react';
 import darkLogo from "../../assets/logo-light.svg";
+import lightLogo from "../../assets/logo-dark.svg";
 import mobile from "../../assets/icon-vertical-ellipsis.svg";
 import Button from "../Button/Button";
 import {useDispatch,useSelector} from "react-redux";
@@ -9,12 +10,12 @@ import "./Navbar.scss";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const {navMenuToggle} = useSelector(store => store.modal);
+  const {navMenuToggle, theme} = useSelector(store => store.modal);
   const {activeBoard} = useSelector(store => store.board);
   return (
     <nav className="navbar">
       <div className="logo-div">
-        <img className="log-img" src={darkLogo} alt="logo"/>
+        <img className="logo-img" src={theme ?darkLogo : lightLogo} alt="logo"/>
 
       </div>
       <div className="main-navbar">

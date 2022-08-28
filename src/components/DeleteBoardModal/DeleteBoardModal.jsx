@@ -19,7 +19,7 @@ const DeleteBoardModal = () => {
             dispatch(deleteCurrentBoard());
             dispatch(hideModal());
           }}
-            className="delete-board-btn">Delete</button>
+            className="delete-btn">Delete</button>
           <button
             onClick={() => {
             dispatch(hideModal());

@@ -18,7 +18,7 @@
 
     label,
     input {
-      background-color: $dark-grey !important;
+      background-color: $dark-grey;
       font-family: inherit !important;
     }
 
@@ -63,7 +63,6 @@
         border-radius: 10px;
         background-color: $very-dark-grey;
         padding: 20px;
-        border: 1px solid $grey;
         width: 192px;
         button {
           background-color: $very-dark-grey;
@@ -97,7 +96,7 @@
 
         .subtask-item {
           border-radius: 5px;
-          background-color: $very-dark-grey !important;
+          background-color: $very-dark-grey;
           font-size: 13px;
           padding: 12px;
           align-items: center;
@@ -117,7 +116,7 @@
           }
         }
         .subtask-item:hover {
-          background-color: $dark-blue !important;
+          background-color: $dark-blue;
         }
       }
     }
@@ -141,7 +140,7 @@
         border-radius: 5px;
         width: 100%;
         li {
-          padding: 5px;
+          padding: 10px;
           list-style: none;
           cursor: pointer;
           color: $light-grey;

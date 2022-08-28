@@ -1,7 +1,6 @@
 @import "../../styles/variables.scss";
 
 .sidebar-wrapper {
-
   background-color: $dark-grey;
   @media (max-width: 768px) {
     padding: 0 15px;
@@ -15,9 +14,9 @@
     background-color: transparent;
     display: none;
   }
-  .sidebar {  
+  .sidebar {
     display: flex;
-  flex-direction: column;
+    flex-direction: column;
     background-color: $dark-grey;
     min-width: 300px;
     padding: 30px 0;
@@ -27,7 +26,7 @@
       height: auto;
     }
 
-    .boards-div {
+    .boards-list-div {
       .sidebar-boards-counter {
         letter-spacing: 2.4px;
         color: $light-grey;
@@ -191,6 +190,6 @@
   }
 }
 
-.mobile-show-sidebar{
+.mobile-show-sidebar {
   display: initial;
 }

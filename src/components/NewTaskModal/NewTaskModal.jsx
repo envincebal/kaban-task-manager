@@ -16,7 +16,7 @@ const NewTaskModal = () => {
   const [status, setStatus] = useState(activeBoard.columns[0].id);
   const [statusToggle, setStatusToggle] = useState(false);
   const [option, setOption] = useState(activeBoard.columns[0].board);
-  const [emptyInputs, setEmptyInputs] = useState(true);
+  const [emptyInputs, setEmptyInputs] = useState(false);
 
   const titleChangeHandler = (e) => {
     setTitle(e.target.value)
@@ -30,13 +30,14 @@ const NewTaskModal = () => {
     let subTasksValues = [...subTasks];
     subTasksValues[i][e.target.name] = e.target.value;
     setSubTasks(subTasksValues);
-    subTasksValues.forEach(item => {
-      if(item.task === ""){
-        setEmptyInputs(false);
-      }else{
-        setEmptyInputs(true);
-      }
-    });
+   let empty = subTasksValues.find(el => el.task === "");
+
+   if(empty){
+    setEmptyInputs(false);
+   }else{
+    setEmptyInputs(true);
+   }
+
   }
 
   const addSubTask = () => {
@@ -51,7 +52,7 @@ const NewTaskModal = () => {
 
   return (
     <div className="new-task-wrapper">
-      {console.log(title)} 
+      {console.log(emptyInputs)}
       <div className="new-task-modal">
       <h3 className="new-task-title">Add New Task</h3>
       <div className="task-title-div">

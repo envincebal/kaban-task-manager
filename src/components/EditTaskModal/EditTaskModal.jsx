@@ -34,13 +34,15 @@ const EditTaskModal = () => {
       }
       : el
     )
+    const empty = editedTasks.find(el => el.task === "");
     setSubTasks(editedTasks);
 
-      if(value === ""){
-        setEmptyInputs(false);
-      }else{
-        setEmptyInputs(true);
-      }
+    if(empty){
+      setEmptyInputs(false);
+     }else{
+      setEmptyInputs(true);
+     }
+
   }
 
   const addSubTask = () => {
@@ -58,7 +60,6 @@ const EditTaskModal = () => {
     filteredSubTasks.splice(i, 1);
 
     setSubTasks(filteredSubTasks);
-
   }
 
   return (

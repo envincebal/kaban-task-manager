@@ -25,12 +25,13 @@ function App() {
     deleteTaskModal,
     taskItemModal,
     taskMenuToggle,
-navMenuToggle
+    navMenuToggle,
+    theme
   } = useSelector(store => store.modal);
   const dispatch = useDispatch();
 
   return (
-    <div className="App" onClick={() => {
+    <div className={`${!theme && "light-mode"} App`} onClick={() => {
       taskMenuToggle && dispatch(taskMenu());
       navMenuToggle && dispatch(navMenu())
     }}>

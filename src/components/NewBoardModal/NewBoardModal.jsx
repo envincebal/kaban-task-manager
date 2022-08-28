@@ -23,14 +23,15 @@ const NewBoardModal = () => {
   const columnsChangeHandler = (i, e) => {
     let columnsValues = [...columns];
     columnsValues[i][e.target.name] = e.target.value;
-    if(!columnsValues[i].board){
-      setEmptyInputs(false);
-    }else{
-      setEmptyInputs(true);
-    }
 
     setColumns(columnsValues);
+    let empty = columnsValues.find(el => el.board === "");
 
+    if(empty){
+     setEmptyInputs(false);
+    }else{
+     setEmptyInputs(true);
+    }
   }
 
   const addColumn = () => {

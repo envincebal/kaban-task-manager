@@ -20,7 +20,7 @@
     label,
     input,
     textarea {
-      background-color: $dark-grey !important;
+      background-color: $dark-grey;
       display: block !important;
       font-family: inherit !important;
     }
@@ -125,7 +125,7 @@
         border-radius: 5px;
         width: 100%;
         li {
-          padding: 5px;
+          padding: 10px;
           list-style: none;
           cursor: pointer;
           color: $light-grey;
