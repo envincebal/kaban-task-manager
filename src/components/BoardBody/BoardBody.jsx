@@ -11,6 +11,8 @@ const BoardBody = () => {
 
   const {boards,activeBoard} = useSelector(store => store.board);
 
+  const colors = ['#49c4e5', '#8471f2', '#67e2ae', '#ff6fa2', "#ffca5e"]
+
   return (
     <div className="board-body">
 
@@ -18,8 +20,8 @@ const BoardBody = () => {
         ? (
           <div className="boards-div">
             {
-              activeBoard.columns.map((item) => {
-                return <TaskColumn id={item.id} name={item.board} key={item.id}/>
+              activeBoard.columns.map((item,index) => {
+                return <TaskColumn id={item.id} name={item.board} key={item.id} color={colors[index % colors.length]} />
               })
             }
             <div onClick={() => dispatch(newColumn())} className="new-board-column">

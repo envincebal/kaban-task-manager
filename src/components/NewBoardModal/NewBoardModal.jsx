@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React ,{ useState} from 'react';
 
 import {useDispatch} from "react-redux";
 import {addBoard} from "../../reducers/board/boardSlice";
@@ -14,6 +14,7 @@ const NewBoardModal = () => {
     setBoardName] = useState("");
   const [columns,
     setColumns] = useState([{id: uuid(), board: "Todo", tasks: [] }, {id: uuid(), board: "Doing", tasks: [] }]);
+  const [emptyInputs, setEmptyInputs] = useState(true);
 
   const nameChangeHandler = (e) => {
     setBoardName(e.target.value)
@@ -22,7 +23,14 @@ const NewBoardModal = () => {
   const columnsChangeHandler = (i, e) => {
     let columnsValues = [...columns];
     columnsValues[i][e.target.name] = e.target.value;
+    if(!columnsValues[i].board){
+      setEmptyInputs(false);
+    }else{
+      setEmptyInputs(true);
+    }
+
     setColumns(columnsValues);
+
   }
 
   const addColumn = () => {
@@ -41,8 +49,9 @@ const NewBoardModal = () => {
         <h3 className="modal-title">Add New Board</h3>
         <div className="board-name-div">
           <label htmlFor="board name">Board Name</label>
-          <input type="text" value={boardName}
+          <input className={`${!boardName && "error-border"} board-name`} type="text" value={boardName}
           onChange={nameChangeHandler} name="board name" placeholder="e.g. Web Design"/>
+          {!boardName && <div className="name-error">Can't be empty</div>}
         </div>
         <div className="board-columns-div">
           <label>Board Columns</label>
@@ -50,7 +59,7 @@ const NewBoardModal = () => {
             <div className="columns-item-div" key={index}>
               <input
               onChange={e => columnsChangeHandler(index, e)}
-                className="column-input"
+                className={`${!column.board && "error-border"} column-input`}
                 type="text"
                 name="board"
                 value={column.board || ""}
@@ -58,19 +67,22 @@ const NewBoardModal = () => {
               <svg onClick={() => deleteColumn(index)} key={index} width="15" height="15" xmlns="http://www.w3.org/2000/svg">
                 <g fill="#828FA3" fillRule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g>
               </svg>
+              {!column.board && <div className="column-error">Can't be empty</div>} 
             </div>
           ))
   }
         </div>
         <Button onClick={() => addColumn()} text={"+ Add New Column"} className={"add-column-subtask"}/>
         <Button onClick={() =>{ 
-          dispatch(
-          addBoard({
-            id: uniqueID,
-        name: boardName,
-          columns
-        }))
-        dispatch(hideModal());
+          if(boardName && emptyInputs){
+            dispatch(
+            addBoard({
+              id: uniqueID,
+              name: boardName,
+              columns
+            }))
+            dispatch(hideModal());
+          }
         }
         } text={"Save Changes"} className={"create-save-changes"}/>
 

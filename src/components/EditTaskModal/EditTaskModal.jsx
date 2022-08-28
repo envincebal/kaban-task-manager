@@ -16,6 +16,7 @@ const EditTaskModal = () => {
   const [status, setStatus] = useState(activeColumn.id);
   const [statusToggle, setStatusToggle] = useState(false);
   const [option, setOption] = useState(activeColumn.board);
+  const [emptyInputs, setEmptyInputs] = useState(true);
 
   const titleHandler = e => {
     setTitle(e.target.value);
@@ -26,15 +27,22 @@ const EditTaskModal = () => {
 
   const subTasksChangeHandler = (i, e) => {
     const { name, value } = e.target;
-    setSubTasks(tasks => tasks.map((el, index) => index === i
+    let editedTasks = subTasks.map((el, index) => index === i
       ? {
         ...el,
         [name]: value,
       }
       : el
-    ));
+    )
+    setSubTasks(editedTasks);
+
+      if(value === ""){
+        setEmptyInputs(false);
+      }else{
+        setEmptyInputs(true);
+      }
   }
-  
+
   const addSubTask = () => {
     setSubTasks([...subTasks, {id: uuid(), task: "", checked: false}])
   }
@@ -64,8 +72,9 @@ const EditTaskModal = () => {
             type="text"
             name="edit-task-title"
             value={title}
-            className="edit-task-title"
+            className={`${!title && "error-border"} edit-task-title`}
             placeholder="e.g. Web Design"/>
+            {!title && <div className="title-error">Can't be empty</div>}
         </div>
         <div className="edit-description-div">
           <label htmlFor="edit-description">Description</label>
@@ -85,7 +94,7 @@ const EditTaskModal = () => {
               <div className="edit-subtasks-item-div" key={index} >
                 <input
                 onChange={(e) => subTasksChangeHandler(index, e)}
-                  className="edit-subtasks-input"
+                  className={`${!item.task && "error-border"} edit-subtasks-input`}
                   type="text"
                   value={item.task}
                   name="task"
@@ -94,6 +103,7 @@ const EditTaskModal = () => {
                   deleteSubTask(index, item.id)}} width="15" height="15" xmlns="http://www.w3.org/2000/svg">
                   <g fill="#828FA3" fillRule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g>
                 </svg>
+                {!item.task && <div className="subtask-error">Can't be empty</div>}  
               </div>
             ))
           }
@@ -120,14 +130,17 @@ const EditTaskModal = () => {
         </div>
 
         <Button onClick={() => {
-          dispatch(editTask({
-            title,
-            description,
-            subTasks,
-            removedChecked: removedSubTask
-          }))
-          dispatch(moveTask(status))
-          dispatch(hideModal());
+          if(emptyInputs && title){
+            dispatch(editTask({
+              title,
+              description,
+              subTasks,
+              removedChecked: removedSubTask
+            }))
+            dispatch(moveTask(status))
+            dispatch(hideModal()); 
+          }
+
         }} text={"Save Changes"} className={"create-save-changes"}/>
       </div>
     </div>

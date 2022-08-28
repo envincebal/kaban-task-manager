@@ -25,13 +25,16 @@ const NewColumnModal = () => {
           onChange={newColumnHandler}
           type="text"
           name="name"
-          className="name"
+          className={`${!newColumn && "error-border"} name`}
           placeholder="e.g. Archived"/>
+          {!newColumn && <div className="name-error">Can't be empty</div>}
       </div>
       <Button
         onClick={() => {
-        dispatch(hideModal());
-        dispatch(addColumn({id: uuid(), board: newColumn, tasks: []}));
+          if(newColumn){
+            dispatch(hideModal());
+            dispatch(addColumn({id: uuid(), board: newColumn, tasks: []}));
+          }
       }}
         text={"+ Add New Column"}
         className={"create-save-changes"}/>
