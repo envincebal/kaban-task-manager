@@ -1,9 +1,10 @@
 @import "../../styles/variables.scss";
 
 .board-column {
+  max-width: 280px;
   min-width: 280px;
   margin-right: 20px;
-
+  width: 100%;
   h3 {
     display: flex;
     align-items: center;

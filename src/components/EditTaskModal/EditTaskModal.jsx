@@ -71,6 +71,7 @@ const EditTaskModal = () => {
           <input
             onChange={titleHandler}
             type="text"
+            maxLength={60}
             name="edit-task-title"
             value={title}
             className={`${!title && "error-border"} edit-task-title`}
@@ -97,6 +98,7 @@ const EditTaskModal = () => {
                 onChange={(e) => subTasksChangeHandler(index, e)}
                   className={`${!item.task && "error-border"} edit-subtasks-input`}
                   type="text"
+                  maxLength={30}
                   value={item.task}
                   name="task"
                   placeholder="e.g. Web Design"/>

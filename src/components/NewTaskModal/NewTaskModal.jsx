@@ -60,6 +60,7 @@ const NewTaskModal = () => {
         <input
           onChange={titleChangeHandler}
           type="text"
+          maxLength={60}
           name="title"
           value={title}
           className={`${!title && "error-border"} title`}
@@ -86,6 +87,7 @@ recharge the batteries a little."></textarea>
               className={`${!item.task && "error-border"} subtasks-input`}
               type="text"
               name="task"
+              maxLength={30}
               value={item.task}
               placeholder="e.g. Take Coffee Break"/>
             <svg onClick={() => deleteSubTask(index)} width="15" height="15" xmlns="http://www.w3.org/2000/svg">

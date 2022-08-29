@@ -58,6 +58,7 @@ const EditBoardModal = () => {
             onChange={nameChangeHandler}
             className={`${!boardName && "error-border"} edit-task-title`}
             type="text"
+            maxLength={25}
             name="edit board name"
             placeholder="e.g. Web Design"/>
           {!boardName && <div className="name-error">Can't be empty</div>}
@@ -71,6 +72,7 @@ const EditBoardModal = () => {
                 className={`${!column.board && "error-border"} edit-column-input`}
                 type="text"
                 name="board"
+                maxLength={20}
                 value={column.board}
                 placeholder="e.g. Web Design"/>
               <svg onClick={() => deleteColumn(index)} key={index} width="15" height="15" xmlns="http://www.w3.org/2000/svg">

@@ -112,6 +112,10 @@ html {
     color: black;
   }
 
+  .board-item:hover{
+    color: $dark-blue;
+  }
+
   .sidebar-board-btn:hover {
     background-color: $very-light-grey;
   }

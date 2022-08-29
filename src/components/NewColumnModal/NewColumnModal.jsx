@@ -25,6 +25,7 @@ const NewColumnModal = () => {
           onChange={newColumnHandler}
           type="text"
           name="name"
+          maxLength={20}
           className={`${!newColumn && "error-border"} name`}
           placeholder="e.g. Archived"/>
           {!newColumn && <div className="name-error">Can't be empty</div>}

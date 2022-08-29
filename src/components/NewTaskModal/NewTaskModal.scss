@@ -16,13 +16,14 @@
     padding: 20px;
     height: auto;
     background-color: $dark-grey;
-
+    
     label,
     input,
     textarea {
       background-color: $dark-grey;
       display: block !important;
       font-family: inherit !important;
+      
     }
 
     input,

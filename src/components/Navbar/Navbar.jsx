@@ -22,7 +22,7 @@ const Navbar = () => {
         <div className="mobile-logo-div">
           <svg width="24" height="25" xmlns="http://www.w3.org/2000/svg"><g fill="#635FC7" fillRule="evenodd"><rect width="6" height="25" rx="2"/><rect opacity=".75" x="9" width="6" height="25" rx="2"/><rect opacity=".5" x="18" width="6" height="25" rx="2"/></g></svg>
           <button onClick={() => dispatch(sideBar())} className="mobile-board-menu">
-          {activeBoard && <h2>{activeBoard.name}</h2>}
+          {activeBoard && <h2 className="mobile-board-name">{activeBoard.name}</h2>}
             <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path stroke="#635FC7" strokeWidth="2" fill="none" d="m1 1 4 4 4-4"/></svg>
           </button>
         </div>
