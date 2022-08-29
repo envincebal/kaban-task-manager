@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo-div">
-        <img className="logo-img" src={theme ?darkLogo : lightLogo} alt="logo"/>
+        <img className="logo-img" src={!theme ?darkLogo : lightLogo} alt="logo"/>
 
       </div>  
       <div className="main-navbar">

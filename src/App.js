@@ -31,7 +31,7 @@ function App() {
   const dispatch = useDispatch();
 
   return (
-    <div className={`${!theme && "light-mode"} App`} onClick={() => {
+    <div className={`${theme && "light-mode"} App`} onClick={() => {
       taskMenuToggle && dispatch(taskMenu());
       navMenuToggle && dispatch(navMenu())
     }}>
