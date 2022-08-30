@@ -10,6 +10,7 @@ const NewColumnModal = () => {
   const dispatch = useDispatch();
   const [newColumn,
     setNewColumn] = useState("");
+    const [error, setError] = useState(false);
 
   const newColumnHandler = e => {
     setNewColumn(e.target.value);
@@ -26,15 +27,18 @@ const NewColumnModal = () => {
           type="text"
           name="name"
           maxLength={20}
-          className={`${!newColumn && "error-border"} name`}
+          className={`${(!newColumn && error) && "error-border"} name`}
           placeholder="e.g. Archived"/>
-          {!newColumn && <div className="name-error">Can't be empty</div>}
+          {(!newColumn && error) && <div className="name-error">Can't be empty</div>}
       </div>
       <Button
         onClick={() => {
           if(newColumn){
+            setError(false);
             dispatch(hideModal());
             dispatch(addColumn({id: uuid(), board: newColumn, tasks: []}));
+          }else{
+            setError(true);
           }
       }}
         text={"+ Add New Column"}

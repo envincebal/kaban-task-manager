@@ -17,6 +17,7 @@ const EditTaskModal = () => {
   const [statusToggle, setStatusToggle] = useState(false);
   const [option, setOption] = useState(activeColumn.board);
   const [emptyInputs, setEmptyInputs] = useState(true);
+  const [error, setError] = useState(false);
 
   const titleHandler = e => {
     setTitle(e.target.value);
@@ -74,9 +75,9 @@ const EditTaskModal = () => {
             maxLength={60}
             name="edit-task-title"
             value={title}
-            className={`${!title && "error-border"} edit-task-title`}
+            className={`${(!title && error) && "error-border"} edit-task-title`}
             placeholder="e.g. Web Design"/>
-            {!title && <div className="title-error">Can't be empty</div>}
+            {(!title && error) && <div className="title-error">Can't be empty</div>}
         </div>
         <div className="edit-description-div">
           <label htmlFor="edit-description">Description</label>
@@ -96,7 +97,7 @@ const EditTaskModal = () => {
               <div className="edit-subtasks-item-div" key={index} >
                 <input
                 onChange={(e) => subTasksChangeHandler(index, e)}
-                  className={`${!item.task && "error-border"} edit-subtasks-input`}
+                  className={`${(!item.task && error) && "error-border"} edit-subtasks-input`}
                   type="text"
                   maxLength={30}
                   value={item.task}
@@ -106,14 +107,13 @@ const EditTaskModal = () => {
                   deleteSubTask(index, item.id)}} width="15" height="15" xmlns="http://www.w3.org/2000/svg">
                   <g fill="#828FA3" fillRule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g>
                 </svg>
-                {!item.task && <div className="subtask-error">Can't be empty</div>}  
+                {(!item.task && error) && <div className="subtask-error">Can't be empty</div>}  
               </div>
             ))
           }
         </div>
         <Button onClick={() => addSubTask()} text={"+ Add New Subtask"} className={"add-column-subtask"}/>
         <div className="edit-status-div">
-
           <button onClick={() => setStatusToggle(!statusToggle)} className="edit-status"><span>{option}</span> <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg"><path stroke="#635FC7" strokeWidth="2" fill="none" d="m1 1 4 4 4-4"/></svg></button>
             {
               statusToggle &&(
@@ -134,6 +134,7 @@ const EditTaskModal = () => {
 
         <Button onClick={() => {
           if(emptyInputs && title){
+            setError(false);
             dispatch(editTask({
               title,
               description,
@@ -142,6 +143,8 @@ const EditTaskModal = () => {
             }))
             dispatch(moveTask(status))
             dispatch(hideModal()); 
+          }else{
+            setError(true);
           }
 
         }} text={"Save Changes"} className={"create-save-changes"}/>

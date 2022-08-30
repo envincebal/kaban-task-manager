@@ -17,6 +17,7 @@ const NewTaskModal = () => {
   const [statusToggle, setStatusToggle] = useState(false);
   const [option, setOption] = useState(activeBoard.columns[0].board);
   const [emptyInputs, setEmptyInputs] = useState(false);
+  const [error, setError] = useState(false);
 
   const titleChangeHandler = (e) => {
     setTitle(e.target.value)
@@ -63,9 +64,9 @@ const NewTaskModal = () => {
           maxLength={60}
           name="title"
           value={title}
-          className={`${!title && "error-border"} title`}
+          className={`${(!title && error) && "error-border"} title`}
           placeholder="e.g. Web Design"/>
-      {!title && <div className="title-error">Can't be empty</div>}
+      {(!title && error) && <div className="title-error">Can't be empty</div>}
       </div>
       <div className="description-div">
         <label>Description</label>
@@ -84,7 +85,7 @@ recharge the batteries a little."></textarea>
            <div className="subtasks-item-div" key={index}>
             <input
               onChange={(e) =>  subTasksChangeHandler(index, e)}
-              className={`${!item.task && "error-border"} subtasks-input`}
+              className={`${(!item.task && error) && "error-border"} subtasks-input`}
               type="text"
               name="task"
               maxLength={30}
@@ -93,7 +94,7 @@ recharge the batteries a little."></textarea>
             <svg onClick={() => deleteSubTask(index)} width="15" height="15" xmlns="http://www.w3.org/2000/svg">
               <g fill="#828FA3" fillRule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g>
             </svg>
-            {!item.task && <div className="subtask-error">Can't be empty</div>}  
+            {(!item.task && error) && <div className="subtask-error">Can't be empty</div>}  
           </div>
         ))}
       </div>
@@ -123,6 +124,7 @@ recharge the batteries a little."></textarea>
       <Button
         onClick={() => {
           if(emptyInputs && title){
+          setError(false);
           dispatch(addTask({
             id: uuid(),
             title,
@@ -131,7 +133,10 @@ recharge the batteries a little."></textarea>
             subTasks,
             count: 0
           }))
-          dispatch(hideModal())}
+          dispatch(hideModal())
+        }else{
+          setError(true);
+        }
           }
        }
         text={"Create Task"}

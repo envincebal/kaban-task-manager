@@ -26,6 +26,7 @@ const NewBoardModal = () => {
   ]);
   const [emptyInputs,
     setEmptyInputs] = useState(true);
+  const [error, setError] = useState(false);
 
   const nameChangeHandler = (e) => {
     setBoardName(e.target.value)
@@ -68,13 +69,13 @@ const NewBoardModal = () => {
         <div className="board-name-div">
           <label htmlFor="board name">Board Name</label>
           <input
-            className={`${ !boardName && "error-border"} board-name`}
+            className={`${(!boardName && error) && "error-border"} board-name`}
             type="text"
             maxLength={25}
             value={boardName}
             onChange={nameChangeHandler}
             name="board name"
-            placeholder="e.g. Web Design"/> {!boardName && <div className="name-error">Can't be empty</div>
+            placeholder="e.g. Web Design"/> {(!boardName && error) && <div className="name-error">Can't be empty</div>
         } </div>
         <div className="board-columns-div">
           <label>Board Columns</label > {
@@ -82,7 +83,7 @@ const NewBoardModal = () => {
             <div className="columns-item-div" key={index}>
               <input
                 onChange={e => columnsChangeHandler(index, e)}
-                className={`${ !column.board && "error-border"} column-input`}
+                className={`${(!column.board && error) && "error-border"} column-input`}
                 type="text"
                 name="board"
                 maxLength={20}
@@ -96,7 +97,7 @@ const NewBoardModal = () => {
                 xmlns="http://www.w3.org/2000/svg">
                 <g fill="#828FA3" fillRule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g>
               </svg>
-              {!column.board && <div className="column-error">Can't be empty</div>}
+              {(!column.board && error) && <div className="column-error">Can't be empty</div>}
         </div>
         )) }
       </div>
@@ -107,8 +108,11 @@ const NewBoardModal = () => {
       <Button
         onClick={() => {
         if (boardName && emptyInputs) {
+          setError(false);
           dispatch(addBoard({id: uniqueID, name: boardName, columns}));
           dispatch(hideModal());
+        }else{
+          setError(true);
         }
       }}
         text={"Save Changes"}

@@ -13,6 +13,7 @@ const EditBoardModal = () => {
   const [columns,
     setColumns] = useState([...activeBoard.columns]);
   const [emptyInputs, setEmptyInputs] = useState(true);
+  const [error, setError] = useState(false);
 
   const nameChangeHandler = (e) => {
     setBoardName(e.target.value)
@@ -56,12 +57,12 @@ const EditBoardModal = () => {
           <input
             value={boardName}
             onChange={nameChangeHandler}
-            className={`${!boardName && "error-border"} edit-task-title`}
+            className={`${(!boardName && error) && "error-border"} edit-task-title`}
             type="text"
             maxLength={25}
             name="edit board name"
             placeholder="e.g. Web Design"/>
-          {!boardName && <div className="name-error">Can't be empty</div>}
+          {(!boardName && error) && <div className="name-error">Can't be empty</div>}
         </div>
         <div className="edit-board-columns-div">
           <label>Board Columns</label>
@@ -69,7 +70,7 @@ const EditBoardModal = () => {
             <div className="edit-columns-item-div" key={index}>
               <input
               onChange={e => columnsChangeHandler(index, e)}
-                className={`${!column.board && "error-border"} edit-column-input`}
+                className={`${(!column.board && error) && "error-border"} edit-column-input`}
                 type="text"
                 name="board"
                 maxLength={20}
@@ -78,7 +79,7 @@ const EditBoardModal = () => {
               <svg onClick={() => deleteColumn(index)} key={index} width="15" height="15" xmlns="http://www.w3.org/2000/svg">
                 <g fill="#828FA3" fillRule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g>
               </svg>
-              {!column.board && <div className="columns-error">Can't be empty</div>}  
+              {(!column.board && error) && <div className="columns-error">Can't be empty</div>}
             </div>
           ))}
         </div>
@@ -90,8 +91,11 @@ const EditBoardModal = () => {
         <Button
           onClick={() => {
             if(boardName && emptyInputs){
+              setError(false);
               dispatch(hideModal())
               dispatch(editBoard({boardName,columns}));
+            }else{
+              setError(true);
             }
           }}
           text={"Save Changes"}
