@@ -66,6 +66,7 @@ const EditBoardModal = () => {
         </div>
         <div className="edit-board-columns-div">
           <label>Board Columns</label>
+          <div className="edit-columns-list">
           {columns.map((column, index) => (
             <div className="edit-columns-item-div" key={index}>
               <input
@@ -82,6 +83,7 @@ const EditBoardModal = () => {
               {(!column.board && error) && <div className="columns-error">Can't be empty</div>}
             </div>
           ))}
+          </div>
         </div>
 
         <Button

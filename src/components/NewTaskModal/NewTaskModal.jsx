@@ -53,7 +53,6 @@ const NewTaskModal = () => {
 
   return (
     <div className="new-task-wrapper">
-      {console.log(emptyInputs)}
       <div className="new-task-modal">
       <h3 className="new-task-title">Add New Task</h3>
       <div className="task-title-div">
@@ -77,18 +76,18 @@ const NewTaskModal = () => {
           name="description"
           rows="5"
           placeholder="e.g. It's always good to take a break. This 15 minute break will
-recharge the batteries a little."></textarea>
+recharge the batteries a little. (OPTIONAL)"></textarea>
       </div>
       <div className="subtasks-div">
         <label>Subtasks</label>
-        {subTasks.map((item, index) => (
+        <div className="subtask-list">
+          {subTasks.map((item, index) => (
            <div className="subtasks-item-div" key={index}>
             <input
               onChange={(e) =>  subTasksChangeHandler(index, e)}
               className={`${(!item.task && error) && "error-border"} subtasks-input`}
               type="text"
               name="task"
-              maxLength={30}
               value={item.task}
               placeholder="e.g. Take Coffee Break"/>
             <svg onClick={() => deleteSubTask(index)} width="15" height="15" xmlns="http://www.w3.org/2000/svg">
@@ -97,6 +96,8 @@ recharge the batteries a little."></textarea>
             {(!item.task && error) && <div className="subtask-error">Can't be empty</div>}  
           </div>
         ))}
+        </div>
+
       </div>
       <Button
         onClick={() => addSubTask()}

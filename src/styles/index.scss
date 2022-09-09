@@ -11,6 +11,22 @@ html {
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+::-webkit-scrollbar {
+  width: 2px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $dark-blue;
+  border-radius: 10px;
+}
+
 .App {
   .modal-overlay {
     width: 100%;

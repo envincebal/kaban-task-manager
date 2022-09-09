@@ -78,7 +78,9 @@ const NewBoardModal = () => {
             placeholder="e.g. Web Design"/> {(!boardName && error) && <div className="name-error">Can't be empty</div>
         } </div>
         <div className="board-columns-div">
-          <label>Board Columns</label > {
+          <label>Board Columns</label > 
+          <div className="columns-list">
+          {
           columns.map((column, index) => (
             <div className="columns-item-div" key={index}>
               <input
@@ -99,7 +101,9 @@ const NewBoardModal = () => {
               </svg>
               {(!column.board && error) && <div className="column-error">Can't be empty</div>}
         </div>
-        )) }
+        )) }  
+          </div>
+
       </div>
       <Button
         onClick={() => addColumn()}

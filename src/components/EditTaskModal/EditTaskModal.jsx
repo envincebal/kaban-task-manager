@@ -88,10 +88,12 @@ const EditTaskModal = () => {
             value={description}
             rows="5"
             placeholder="e.g. It's always good to take a break. This 15 minute break will
-  recharge the batteries a little."></textarea>
+  recharge the batteries a little. (OPTIONAL)"></textarea>
         </div>
         <div className="edit-subtasks-div">
           <label htmlFor="edit-subtasks">Subtasks</label>
+          <div className="edit-subtasks-list">
+
           {
             subTasks.map((item, index) => (
               <div className="edit-subtasks-item-div" key={index} >
@@ -99,7 +101,6 @@ const EditTaskModal = () => {
                 onChange={(e) => subTasksChangeHandler(index, e)}
                   className={`${(!item.task && error) && "error-border"} edit-subtasks-input`}
                   type="text"
-                  maxLength={30}
                   value={item.task}
                   name="task"
                   placeholder="e.g. Web Design"/>
@@ -111,6 +112,7 @@ const EditTaskModal = () => {
               </div>
             ))
           }
+          </div>
         </div>
         <Button onClick={() => addSubTask()} text={"+ Add New Subtask"} className={"add-column-subtask"}/>
         <div className="edit-status-div">

@@ -7,7 +7,7 @@
     z-index: 2;
     position: fixed;
     left: 50%;
-    top: 35%;
+    top: 50%;
     transform: translate(-50%, -50%);
     max-width: 480px;
     width: 100%;
@@ -37,6 +37,8 @@
       .sidebar-board-list {
         margin-top: 15px;
         list-style: none;
+        max-height: 375px;
+        overflow-y: auto;
       }
 
       .create-board-btn {

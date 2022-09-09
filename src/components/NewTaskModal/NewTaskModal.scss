@@ -16,14 +16,13 @@
     padding: 20px;
     height: auto;
     background-color: $dark-grey;
-    
+
     label,
     input,
     textarea {
       background-color: $dark-grey;
       display: block !important;
       font-family: inherit !important;
-      
     }
 
     input,
@@ -43,7 +42,7 @@
       font-weight: 700;
     }
 
-    .error-border{
+    .error-border {
       border: 1px solid $red;
     }
 
@@ -62,7 +61,7 @@
     .description-div,
     .subtasks-div,
     .status-div {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .task-title-div {
@@ -75,7 +74,7 @@
         padding-left: 10px;
         position: absolute;
         right: 50px;
-        top: 95px;
+        top: 83px;
       }
     }
     .description-div {
@@ -85,7 +84,10 @@
     }
 
     .subtasks-div {
-      .subtasks-item-div {
+      .subtask-list{
+        max-height: 116px;
+        overflow-y: auto;
+        .subtasks-item-div {
         display: flex;
         align-items: center;
         margin-bottom: 10px;
@@ -108,6 +110,8 @@
           right: 40px;
         }
       }
+      }
+
     }
     .status-div {
       position: relative;
@@ -125,6 +129,8 @@
         position: absolute;
         border-radius: 5px;
         width: 100%;
+        max-height: 116px;
+        overflow-y: auto;
         li {
           padding: 10px;
           list-style: none;
@@ -139,5 +145,3 @@
     }
   }
 }
-
-
